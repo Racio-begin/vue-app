@@ -1,6 +1,6 @@
 <template>
 	<div class="quote">
-		<h2 class="quote__title">{{ quote }}</h2>
+		<h2 class="quote__title">«{{ title }}»</h2>
 		<p class="quote__author">{{ author }}</p>
 	</div>
 </template>
@@ -9,7 +9,7 @@
 export default {
 	name: "QuoteItem",
 	props: {
-		quote: {
+		title: {
 			type: String,
 			required: true,
 		},

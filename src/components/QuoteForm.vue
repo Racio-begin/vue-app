@@ -4,13 +4,13 @@
 			<div class="form__inputs">
 				<h2>Добавить цитату</h2>
 				<input 
-					v-model.value="quote"
+					v-model.value="quote.title"
 					class="form__input"
 					type="text"
 					placeholder="Введите цитату"
 				>
 				<input
-					v-model.value="author"
+					v-model.value="quote.author"
 					class="form__input"
 					type="text"
 					placeholder="Введите автора"
@@ -37,21 +37,23 @@ export default {
 	},
 	data() {
 		return {
-			quote: '',
-			author: '',
+			quote: {
+				title: '',
+				author: '',
+			}
 		}
 	},
 	methods: {
 		addQuote() {
 			const newQuote = {
 				id: Date.now(),
-				quote: this.quote,
-				author: this.author,
+				title: this.quote.title,
+				author: this.quote.author,
 			}
 			this.quotes.push(newQuote);
 
-			this.quote = '';
-			this.author = '';
+			this.quote.title = '';
+			this.quote.author = '';
 		}
 	}
 }

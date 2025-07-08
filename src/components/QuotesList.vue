@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="quotes-list" v-for="quote in quotes">
 			<QuoteItem 
-				:quote="quote.quote"
+				:title="quote.title"
 				:author="quote.author"
 			/>	
 		</div>

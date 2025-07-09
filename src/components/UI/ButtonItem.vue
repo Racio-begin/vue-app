@@ -18,7 +18,6 @@ export default {
 .button {
 	padding: 10px 20px;
 	background-color: #7ed7d7;
-	// color: #fff;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;

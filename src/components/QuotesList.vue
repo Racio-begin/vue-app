@@ -1,11 +1,11 @@
 <template>
 	<div class="container">
-		<div class="quotes-list" v-for="quote in quotes">
+		<div class="quotes-list">
 			<QuoteItem 
-				:title="quote.title"
-				:author="quote.author"
-			/>	
-		</div>
+				v-for="quote in quotes"
+				:quote="quote"
+			/>
+	</div>
 	</div>
 </template>
 
@@ -30,6 +30,8 @@ export default {
 
 <style lang="scss" scoped>
 .quotes-list {
-	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 </style>

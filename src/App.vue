@@ -3,6 +3,7 @@
     <h1 class="title">Цитаты великих (и не очень) людей</h1>
     <QuoteForm
       :quotes="quotes"
+      @addQuote="addQuote"
     />
     <QuotesList 
       :quotes="quotes"
@@ -26,6 +27,11 @@ export default {
     return {
       quotes: quotes,
     }
+  },
+  methods: {
+    addQuote(quote) {
+      this.quotes.push(quote);
+    }
   }
 }
 </script>
@@ -38,7 +44,6 @@ export default {
 }
 
 .title {
-  // color: #757575;
   margin: 0 auto 20px;
 }
 </style>

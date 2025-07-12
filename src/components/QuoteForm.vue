@@ -45,15 +45,14 @@ export default {
 	},
 	methods: {
 		addQuote() {
-			const newQuote = {
-				id: Date.now(),
-				title: this.quote.title,
-				author: this.quote.author,
-			}
-			this.quotes.push(newQuote);
+			this.quote.id = Date.now();
 
-			this.quote.title = '';
-			this.quote.author = '';
+			this.$emit('addQuote', this.quote);
+
+			this.quote = {
+				title: '',
+				author: '',
+			}
 		}
 	}
 }
@@ -65,7 +64,6 @@ export default {
 	border-radius: 10px;
 	padding: 20px 40px;
 	margin-bottom: 20px;
-
 	display: flex;
 	flex-direction: column;
 	align-items: end;
@@ -76,11 +74,11 @@ export default {
 		display: flex;
 		gap: 20px;
 	}
+
 	&__input {
 		padding: 10px 20px;
 		border: none;
 		border-bottom: 1px solid #7ed7d7;
-		// border-radius: 5px;
 	}
 }
 </style>

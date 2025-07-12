@@ -22,10 +22,8 @@ export default {
 	padding: 20px 40px;
 	border: 2px solid #7ed7d7;
 	border-radius: 15px;
-
 	display: flex;
 	flex-direction: column;
-	// align-items: center;
 	gap: 10px;
 
 	&__author {

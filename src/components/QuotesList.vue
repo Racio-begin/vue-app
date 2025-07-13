@@ -1,12 +1,22 @@
 <template>
 	<div class="container">
-		<div class="quotes-list">
+		<div
+			class="quotes-list"
+			v-if="quotes.length"
+		>
 			<QuoteItem 
 				v-for="quote in quotes"
 				:quote="quote"
 				:key="quote.id"
 				@removeQuote="$emit('removeQuote', $event)"
 			/>
+		</div>
+
+		<div 
+			class="quotes-list_empty"
+			v-else
+		>
+			<h2>Список цитат пуст</h2>
 		</div>
 	</div>
 </template>
@@ -33,5 +43,9 @@ export default {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	
+	&_empty {
+		text-align: center;
+	}
 }
 </style>

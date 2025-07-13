@@ -1,6 +1,6 @@
 <template>
   <main class="app">
-    <h1 class="title">Цитаты великих (и не очень) людей</h1>
+    <h1 class="app__title">Цитаты великих (и не очень) людей</h1>
     <QuoteForm
       :quotes="quotes"
       @addQuote="addQuote"
@@ -41,9 +41,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.title {
-  margin: 0 auto 20px;
+  &__title {
+    margin: 0 auto 20px;
+  }
 }
 </style>

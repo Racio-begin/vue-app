@@ -6,8 +6,9 @@
 export default {
 	name: "ButtonItem",
 	props: {
-		name: String,
-		required: true,
+		name: {
+			type: String,
+			required: true,}
 	}
 }
 </script>

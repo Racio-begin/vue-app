@@ -3,25 +3,27 @@
 		<form class="form" @submit.prevent>
 			<div class="form__inputs">
 				<h2>Добавить цитату</h2>
-				<input 
-					v-model.value="quote.title"
-					class="form__input"
-					type="text"
-					placeholder="Введите цитату"
-				>
-				<input
-					v-model.value="quote.author"
-					class="form__input"
-					type="text"
-					placeholder="Введите автора"
-				>
+				<InputItem 
+					v-model="quote.title"
+					inputType="text"
+					inputPlaceholder="Введите цитату"
+				/>
+				<InputItem 
+					v-model="quote.author"
+					inputType="text"
+					inputPlaceholder="Введите автора"
+				/>
 			</div>
-			<ButtonItem @click="addQuote" name="Добавить цитату"/>
+			<ButtonItem 
+				@click="addQuote"
+				name="Добавить цитату"
+			/>
 		</form>
 	</div>
 </template>
 
 <script>
+import InputItem from '@/components/UI/InputItem.vue';
 import ButtonItem from '@/components/UI/ButtonItem.vue';
 
 export default {
@@ -33,6 +35,7 @@ export default {
 		}
 	},
 	components: {
+		InputItem,
 		ButtonItem,
 	},
 	data() {
@@ -73,12 +76,6 @@ export default {
 		margin-bottom: 20px;
 		display: flex;
 		gap: 20px;
-	}
-
-	&__input {
-		padding: 10px 20px;
-		border: none;
-		border-bottom: 1px solid #7ed7d7;
 	}
 }
 </style>

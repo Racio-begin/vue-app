@@ -20,5 +20,10 @@ export default {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+	transition: opacity 0.25s ease;
+
+	&:hover {
+		opacity: 0.8;
+	}
 }
 </style>

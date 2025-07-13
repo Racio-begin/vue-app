@@ -7,6 +7,7 @@
     />
     <QuotesList 
       :quotes="quotes"
+      @removeQuote="removeQuote"
     />
   </main>
 </template>
@@ -31,6 +32,9 @@ export default {
   methods: {
     addQuote(quote) {
       this.quotes.push(quote);
+    },
+    removeQuote(quote) {
+      this.quotes = this.quotes.filter(q => q.id !== quote);
     }
   }
 }

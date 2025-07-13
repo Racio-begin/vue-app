@@ -1,8 +1,8 @@
 <template>
 	<div class="container">
 		<form class="form" @submit.prevent>
+			<h2>Добавить цитату</h2>
 			<div class="form__inputs">
-				<h2>Добавить цитату</h2>
 				<InputItem 
 					v-model="quote.title"
 					inputType="text"
@@ -23,9 +23,6 @@
 </template>
 
 <script>
-import InputItem from '@/components/UI/InputItem.vue';
-import ButtonItem from '@/components/UI/ButtonItem.vue';
-
 export default {
 	name: "QuoteForm",
 	props: {
@@ -33,10 +30,6 @@ export default {
 			type: Array,
 			required: true,
 		}
-	},
-	components: {
-		InputItem,
-		ButtonItem,
 	},
 	data() {
 		return {
@@ -69,7 +62,7 @@ export default {
 	margin-bottom: 20px;
 	display: flex;
 	flex-direction: column;
-	align-items: end;
+	align-items: center;
 	gap: 10px;
 
 	&__inputs {

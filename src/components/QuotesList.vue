@@ -4,14 +4,15 @@
 			<QuoteItem 
 				v-for="quote in quotes"
 				:quote="quote"
+				:key="quote.id"
+				@removeQuote="$emit('removeQuote', $event)"
 			/>
-	</div>
+		</div>
 	</div>
 </template>
 
 <script>
 import QuoteItem from '@/components/QuoteItem.vue';
-import ButtonItem from '@/components/UI/ButtonItem.vue';
 
 export default {
 	name: "QuotesList",
@@ -23,7 +24,6 @@ export default {
 	},
 	components: {
 		QuoteItem,
-		ButtonItem,
 	},
 }
 </script>

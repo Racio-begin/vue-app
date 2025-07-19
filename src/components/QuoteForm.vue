@@ -1,5 +1,4 @@
 <template>
-	<div class="container">
 		<form class="form" @submit.prevent>
 			<h2>Добавить цитату</h2>
 			<div class="form__inputs">
@@ -8,7 +7,7 @@
 					inputType="text"
 					inputPlaceholder="Введите цитату"
 				/>
-				<InputItem 
+				<InputItem
 					v-model="quote.author"
 					inputType="text"
 					inputPlaceholder="Введите автора"
@@ -19,7 +18,6 @@
 				name="Добавить цитату"
 			/>
 		</form>
-	</div>
 </template>
 
 <script>
@@ -59,7 +57,6 @@ export default {
 	border: 1px solid #7ed7d7;
 	border-radius: 10px;
 	padding: 20px 40px;
-	margin-bottom: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

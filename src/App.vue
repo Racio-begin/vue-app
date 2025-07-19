@@ -1,15 +1,28 @@
 <template>
   <main class="app">
-    <h1 class="app__title">Цитаты великих (и не очень) людей</h1>
-    <QuoteForm
-      :quotes="quotes"
-      @addQuote="addQuote"
-    />
-    <QuotesList 
-      :quotes="quotes"
-      @removeQuote="removeQuote"
-    />
-  </main>
+    <div class="container">
+
+      <h1 class="app__title">Цитаты великих (и не очень) людей</h1>
+      <div class="app__buttons">
+        <ButtonItem 
+          name="Добавить цитату"
+          @click="showDialog"
+        />
+      </div>
+      <QuotesList 
+        :quotes="quotes"
+        @removeQuote="removeQuote"
+      />
+      <MyDialog 
+        v-model:show="isDialogVisible"
+      >
+        <QuoteForm
+        :quotes="quotes"
+        @addQuote="addQuote"
+      />
+      </MyDialog>
+    </div>
+  </main>  
 </template>
 
 <script>
@@ -27,6 +40,7 @@ export default {
   data() {
     return {
       quotes: quotes,
+      isDialogVisible: false,
     }
   },
   methods: {
@@ -35,7 +49,10 @@ export default {
     },
     removeQuote(quote) {
       this.quotes = this.quotes.filter(q => q.id !== quote);
-    }
+    },
+    showDialog() {
+      this.isDialogVisible = true;
+    },
   }
 }
 </script>
@@ -48,6 +65,13 @@ export default {
 
   &__title {
     margin: 0 auto 20px;
+    text-align: center;
+  }
+
+  &__buttons {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 </style>

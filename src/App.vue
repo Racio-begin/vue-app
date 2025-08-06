@@ -3,16 +3,26 @@
     <div class="container">
 
       <h1 class="app__title">Цитаты великих (и не очень) людей</h1>
+
+
+
       <div class="app__buttons">
+        <!-- <ButtonItem 
+          name="Получить посты"
+          @click="fetchQuotes"
+        /> -->
+
         <ButtonItem 
           name="Добавить цитату"
           @click="showDialog"
         />
       </div>
-      <QuotesList 
-        :quotes="quotes"
-        @removeQuote="removeQuote"
-      />
+      <div class="app__quotes">
+        <QuotesList 
+          :quotes="quotes"
+          @removeQuote="removeQuote"
+        />
+      </div>
       <MyDialog 
         v-model:show="isDialogVisible"
       >
@@ -29,7 +39,9 @@
 import QuoteForm from '@/components/QuoteForm.vue';
 import QuotesList from '@/components/QuotesList.vue';
 
-import quotes from '@/utils/quotes';
+// import quotes from '@/utils/quotes';
+
+import axios from 'axios';
 
 export default {
   name: "App",
@@ -39,7 +51,7 @@ export default {
   },
   data() {
     return {
-      quotes: quotes,
+      quotes: [],
       isDialogVisible: false,
     }
   },
@@ -53,6 +65,18 @@ export default {
     showDialog() {
       this.isDialogVisible = true;
     },
+    async fetchQuotes() {
+      try {
+        // const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes?limit=10');
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
+        this.quotes = response.data;
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  },
+  mounted() {
+    this.fetchQuotes();
   }
 }
 </script>
@@ -66,6 +90,10 @@ export default {
   &__title {
     margin: 0 auto 20px;
     text-align: center;
+  }
+
+  &__quotes {
+    margin-bottom: 60px;
   }
 
   &__buttons {

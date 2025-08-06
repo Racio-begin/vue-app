@@ -2,7 +2,7 @@
 	<div class="quote">
 		<div class="quote__content">
 			<h2 class="quote__title">«{{ quote.title }}»</h2>
-			<p class="quote__author">{{ quote.author }}</p>
+			<p class="quote__author">{{ quote.body }}</p>
 		</div>
 
 		<div class="quote__buttons">

@@ -1,23 +1,28 @@
 <template>
-		<form class="form" @submit.prevent>
-			<h2>Добавить цитату</h2>
-			<div class="form__inputs">
-				<InputItem 
-					v-model="quote.title"
-					inputType="text"
-					inputPlaceholder="Введите цитату"
-				/>
-				<InputItem
-					v-model="quote.author"
-					inputType="text"
-					inputPlaceholder="Введите автора"
-				/>
-			</div>
-			<ButtonItem 
-				@click="addQuote"
-				name="Добавить цитату"
+	<form
+		class="form"
+		@submit.prevent
+	>
+		<h2>Добавить цитату</h2>
+		<div class="form__inputs">
+			<InputItem
+				v-model="quote.title"
+				inputType="text"
+				inputPlaceholder="Введите цитату"
 			/>
-		</form>
+
+			<InputItem
+				v-model="quote.author"
+				inputType="text"
+				inputPlaceholder="Введите автора"
+			/>
+
+		</div>
+		<ButtonItem
+			@click="addQuote"
+			name="Добавить цитату"
+		/>
+	</form>
 </template>
 
 <script>
@@ -35,7 +40,7 @@ export default {
 				title: '',
 				author: '',
 			}
-		}
+		};
 	},
 	methods: {
 		addQuote() {
@@ -46,15 +51,17 @@ export default {
 			this.quote = {
 				title: '',
 				author: '',
-			}
+			};
 		}
 	}
-}
+};
 </script>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/vars" as *;
+
 .form {
-	border: 1px solid #7ed7d7;
+	border: 1px solid $color-primary;
 	border-radius: 10px;
 	padding: 20px 40px;
 	display: flex;

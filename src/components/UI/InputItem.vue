@@ -1,5 +1,5 @@
 <template>
-	<input 
+	<input
 		:value="modelValue"
 		@input="updateInput"
 		class="input"
@@ -30,7 +30,7 @@ export default {
 			this.$emit('update:modelValue', event.target.value);
 		},
 	},
-}
+};
 </script>
 
 <style lang="scss" scoped>

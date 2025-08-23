@@ -28,14 +28,16 @@ export default {
 			this.$emit('removeQuote', this.quote.id);
 		}
 	}
-}
+};
 </script>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/vars" as *;
+
 .quote {
 	width: 100%;
 	padding: 20px 40px;
-	border: 2px solid #7ed7d7;
+	border: 2px solid $color-primary;
 	border-radius: 15px;
 	display: flex;
 	justify-content: space-between;

@@ -1,15 +1,16 @@
 <template>
-	<div class="dialog"
+	<div
+		class="dialog"
 		v-if="show"
 		@click="closeDialog"
 	>
-		<div 
-			class="dialog__inner" 
+		<div
+			class="dialog__inner"
 			@click.stop
 		>
 			<slot></slot>
-			<ButtonItem 
-				name= "Я крестик"
+			<ButtonItem
+				name="Я крестик"
 				class="dialog__close"
 				@click="closeDialog"
 			/>
@@ -36,6 +37,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/vars" as *;
+
 .dialog {
 	width: 100%;
 	height: 100%;
@@ -46,12 +49,12 @@ export default {
 	justify-content: center;
 	align-items: center;
 	z-index: 100;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: $color-background-opacity;
 
 	&__inner {
 		padding: 20px;
 		border-radius: 20px;
-		background-color: #ffffff;
+		background-color: $color-white;
 		position: relative;
 	}
 

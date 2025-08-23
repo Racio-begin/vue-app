@@ -3,7 +3,7 @@
 		class="quotes-list"
 		v-if="quotes.length"
 	>
-		<QuoteItem 
+		<QuoteItem
 			v-for="quote in quotes"
 			:quote="quote"
 			:key="quote.id"
@@ -11,7 +11,7 @@
 		/>
 	</div>
 
-	<div 
+	<div
 		class="quotes-list_empty"
 		v-else
 	>
@@ -33,7 +33,7 @@ export default {
 	components: {
 		QuoteItem,
 	},
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -41,7 +41,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-	
+
 	&_empty {
 		text-align: center;
 	}

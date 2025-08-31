@@ -32,6 +32,10 @@ export default {
 		quotes: {
 			type: Array,
 			required: true,
+		},
+		closeDialog: {
+			type: Function,
+			required: false,
 		}
 	},
 	data() {
@@ -43,7 +47,14 @@ export default {
 		};
 	},
 	methods: {
-		addQuote() {
+		addQuote(event) {
+			event.preventDefault();
+
+			if (!this.quote.title.trim() || !this.quote.body.trim()) {
+				alert('Пожалуйста, заполните поля');
+				return;
+			}
+
 			this.quote.id = Date.now();
 
 			this.$emit('addQuote', this.quote);
@@ -52,7 +63,24 @@ export default {
 				title: '',
 				body: '',
 			};
+
+			if (this.closeDialog) {
+				this.closeDialog();
+			}
+		},
+		handleEscape(event) {
+			if (event.key === 'Escape') {
+				if (this.closeDialog) {
+					this.closeDialog();
+				}
+			}
 		}
+	},
+	mounted() {
+		document.addEventListener('keydown', this.handleEscape);
+	},
+	beforeUnmount() {
+		document.removeEventListener('keydown', this.handleEscape);
 	}
 };
 </script>

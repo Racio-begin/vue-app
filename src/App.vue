@@ -4,10 +4,6 @@
 			<h1 class="app__title">Цитаты великих (и не очень) людей</h1>
 
 			<div class="app__buttons">
-				<!-- <ButtonItem 
-          name="Получить посты"
-          @click="fetchQuotes"
-        /> -->
 				<ButtonItem
 					name="Добавить цитату"
 					@click="showDialog"
@@ -25,6 +21,7 @@
 				<QuoteForm
 					:quotes="quotes"
 					@addQuote="addQuote"
+					:closeDialog="closeDialog"
 				/>
 			</MyDialog>
 		</div>
@@ -55,23 +52,29 @@ export default {
 		addQuote(quote) {
 			this.quotes.push(quote);
 		},
+
 		removeQuote(quote) {
 			this.quotes = this.quotes.filter(q => q.id !== quote);
 		},
+
 		showDialog() {
 			this.isDialogVisible = true;
 		},
+
+		closeDialog() {
+			this.isDialogVisible = false;
+		},
+
 		async fetchQuotes() {
 			try {
 				// const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes?limit=10');
 				const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
 				this.quotes = response.data;
-				console.log('response', response);
-
+				// console.log('response', response);
 			} catch (error) {
 				alert(error.message);
 			}
-		}
+		},
 	},
 	mounted() {
 		this.fetchQuotes();

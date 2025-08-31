@@ -50,7 +50,7 @@ export default {
 	}
 
 	&__author {
-		text-align: right;
+		text-align: left;
 	}
 
 	&__buttons {

@@ -12,7 +12,7 @@
 			/>
 
 			<InputItem
-				v-model="quote.author"
+				v-model="quote.body"
 				inputType="text"
 				inputPlaceholder="Введите автора"
 			/>
@@ -38,7 +38,7 @@ export default {
 		return {
 			quote: {
 				title: '',
-				author: '',
+				body: '',
 			}
 		};
 	},
@@ -50,7 +50,7 @@ export default {
 
 			this.quote = {
 				title: '',
-				author: '',
+				body: '',
 			};
 		}
 	}

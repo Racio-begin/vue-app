@@ -66,6 +66,8 @@ export default {
 				// const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes?limit=10');
 				const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
 				this.quotes = response.data;
+				console.log('response', response);
+
 			} catch (error) {
 				alert(error.message);
 			}

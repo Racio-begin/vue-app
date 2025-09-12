@@ -14,8 +14,20 @@
 				<QuotesList
 					:quotes="quotes"
 					@removeQuote="removeQuote"
+					v-if="!isQuotesLoading"
 				/>
+
+				<div
+					class="loading"
+					v-else
+				>
+					<div class="loading__inner">
+						<span class="loading__text">Загрузка цитат</span>
+						<span class="loading__dots"></span>
+					</div>
+				</div>
 			</div>
+
 
 			<MyDialog v-model:show="isDialogVisible">
 				<QuoteForm
@@ -46,6 +58,7 @@ export default {
 		return {
 			quotes: [],
 			isDialogVisible: false,
+			isQuotesLoading: false,
 		};
 	},
 	methods: {
@@ -67,12 +80,15 @@ export default {
 
 		async fetchQuotes() {
 			try {
+				this.isQuotesLoading = true;
 				// const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes?limit=10');
 				const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
 				this.quotes = response.data;
 				// console.log('response', response);
 			} catch (error) {
 				alert(error.message);
+			} finally {
+				this.isQuotesLoading = false;
 			}
 		},
 	},
@@ -102,6 +118,52 @@ export default {
 		margin-bottom: 20px;
 		display: flex;
 		justify-content: flex-end;
+	}
+}
+
+.loading {
+	display: flex;
+	justify-content: center;
+
+	&__inner {
+		padding-right: 20px;
+		position: relative;
+	}
+
+	// &__text {}
+
+	&__dots {
+		width: 20px;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+
+		&::after {
+			content: "";
+			animation: loading-text 1s infinite;
+		}
+	}
+}
+
+@keyframes loading-text {
+	0% {
+		content: "";
+	}
+
+	25% {
+		content: ".";
+	}
+
+	50% {
+		content: "..";
+	}
+
+	75% {
+		content: "...";
+	}
+
+	100% {
+		content: "";
 	}
 }
 </style>

@@ -44,8 +44,6 @@
 import QuoteForm from '@/components/QuoteForm.vue';
 import QuotesList from '@/components/QuotesList.vue';
 
-// import quotes from '@/utils/quotes';
-
 import axios from 'axios';
 
 export default {
@@ -81,10 +79,16 @@ export default {
 		async fetchQuotes() {
 			try {
 				this.isQuotesLoading = true;
-				// const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes?limit=10');
-				const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
+				const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes', {
+					params: {
+						limit: 10,
+						page: 1,
+					},
+					headers: {
+						'content-type': 'application/json',
+					}
+				});
 				this.quotes = response.data;
-				// console.log('response', response);
 			} catch (error) {
 				alert(error.message);
 			} finally {
@@ -129,8 +133,6 @@ export default {
 		padding-right: 20px;
 		position: relative;
 	}
-
-	// &__text {}
 
 	&__dots {
 		width: 20px;

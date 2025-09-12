@@ -1,8 +1,8 @@
 <template>
 	<div class="quote">
 		<div class="quote__content">
-			<h2 class="quote__title">«{{ quote.title }}»</h2>
-			<p class="quote__author">{{ quote.body }}</p>
+			<p class="quote__quote">{{ quote.quote }}</p>
+			<h2 class="quote__name">«{{ quote.name }}»</h2>
 		</div>
 
 		<div class="quote__buttons">
@@ -41,6 +41,7 @@ export default {
 	border-radius: 15px;
 	display: flex;
 	justify-content: space-between;
+	gap: 50px;
 
 	&__content {
 		display: flex;
@@ -49,8 +50,13 @@ export default {
 		gap: 10px;
 	}
 
-	&__author {
+	&__quote {
 		text-align: left;
+		font-size: 22px;
+	}
+
+	&__name {
+		font-size: 18px;
 	}
 
 	&__buttons {

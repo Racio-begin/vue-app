@@ -6,13 +6,13 @@
 		<h2>Добавить цитату</h2>
 		<div class="form__inputs">
 			<InputItem
-				v-model="quote.title"
+				v-model="quote.name"
 				inputType="text"
 				inputPlaceholder="Введите цитату"
 			/>
 
 			<InputItem
-				v-model="quote.body"
+				v-model="quote.quote"
 				inputType="text"
 				inputPlaceholder="Введите автора"
 			/>
@@ -41,8 +41,8 @@ export default {
 	data() {
 		return {
 			quote: {
-				title: '',
-				body: '',
+				name: '',
+				quote: '',
 			}
 		};
 	},
@@ -50,7 +50,7 @@ export default {
 		addQuote(event) {
 			event.preventDefault();
 
-			if (!this.quote.title.trim() || !this.quote.body.trim()) {
+			if (!this.quote.name.trim() || !this.quote.quote.trim()) {
 				alert('Пожалуйста, заполните поля');
 				return;
 			}
@@ -60,8 +60,8 @@ export default {
 			this.$emit('addQuote', this.quote);
 
 			this.quote = {
-				title: '',
-				body: '',
+				name: '',
+				quote: '',
 			};
 
 			if (this.closeDialog) {

@@ -1,8 +1,6 @@
 <template>
-	<header>
-		<NavBar>
-
-		</NavBar>
+	<header class="header">
+		<NavBar />
 	</header>
 </template>
 
@@ -17,4 +15,10 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.header {
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+}
+</style>

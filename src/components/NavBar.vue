@@ -10,7 +10,7 @@
 		>Проект</router-link>
 		<router-link
 			class="nav__link"
-			to="/about"
+			to="/about-me"
 		>Обо мне</router-link>
 	</nav>
 </template>

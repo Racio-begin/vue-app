@@ -20,8 +20,8 @@ const router = createRouter({
 			// Ленивая загрузка
 		},
 		{
-			path: '/about',
-			component: () => import('@/pages/AboutPage.vue'),
+			path: '/about-me',
+			component: () => import('@/pages/AboutMe.vue'),
 		},
 		{
 			path: '/about-project',

@@ -43,7 +43,10 @@
 		</div>
 
 		<div class="form__button">
-			<ButtonItem name="Отправить" />
+			<ButtonItem
+				type="submit"
+				name="Отправить"
+			/>
 		</div>
 	</form>
 </template>

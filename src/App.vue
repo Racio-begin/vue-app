@@ -1,6 +1,6 @@
 <template>
 	<MyHeader />
-	<main>
+	<main class="main">
 		<router-view />
 	</main>
 	<MyFooter />

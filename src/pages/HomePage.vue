@@ -1,16 +1,16 @@
 <template>
-	<div class="app">
+	<div class="home">
 		<div class="container">
-			<h1 class="app__title">Цитаты великих (и не очень) людей</h1>
+			<h1 class="home__title">Цитаты великих (и не очень) людей</h1>
 
-			<div class="app__buttons">
+			<div class="home__buttons">
 				<ButtonItem
 					name="Добавить цитату"
 					@click="showDialog"
 				/>
 			</div>
 
-			<div class="app__quotes">
+			<div class="home__quotes">
 				<QuotesList
 					:quotes="quotes"
 					@removeQuote="removeQuote"
@@ -103,8 +103,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app {
-	padding: 50px 0;
+.home {
 	display: flex;
 	flex-direction: column;
 	align-items: center;

@@ -45,11 +45,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/vars" as *;
+
 .textarea {
 	min-height: 100px;
 	padding: 10px 20px;
 	border: none;
-	border-bottom: 1px solid #7ed7d7;
+	border-bottom: 1px solid $color-primary;
 	resize: none;
 }
 </style>

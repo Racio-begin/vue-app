@@ -3,15 +3,23 @@
 		<router-link
 			class="nav__link"
 			to="/"
-		>Главная</router-link>
+		>
+			Главная
+		</router-link>
+
 		<router-link
 			class="nav__link"
 			to="/about-project"
-		>Проект</router-link>
+		>
+			Проект
+		</router-link>
+
 		<router-link
 			class="nav__link"
 			to="/about-me"
-		>Обо мне</router-link>
+		>
+			Обо мне
+		</router-link>
 	</nav>
 </template>
 
@@ -25,7 +33,6 @@ export default {
 @use "@/assets/styles/vars" as *;
 
 .nav {
-	// padding: 20px 0;
 	display: flex;
 	gap: 20px;
 

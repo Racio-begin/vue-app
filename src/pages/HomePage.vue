@@ -1,5 +1,5 @@
 <template>
-	<main class="app">
+	<div class="app">
 		<div class="container">
 			<h1 class="app__title">Цитаты великих (и не очень) людей</h1>
 
@@ -37,7 +37,7 @@
 				/>
 			</MyDialog>
 		</div>
-	</main>
+	</div>
 </template>
 
 <script>

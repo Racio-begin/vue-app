@@ -88,7 +88,6 @@ export default {
 			console.log("Отправка данных:", this.formData);
 			alert("Данные отправлены :)");
 
-			// Сброс формы
 			this.formData = {
 				name: '',
 				phone: '',
@@ -112,10 +111,8 @@ export default {
 	flex-direction: column;
 	gap: 20px;
 	background-color: rgb(65, 215, 215, 0.3);
-	// opacity: 0.1;
 
 	&__inputs {
-		// padding: 20px;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;

@@ -6,10 +6,6 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from '@/App.vue';
 
-// import HomePage from '@/pages/HomePage.vue';
-// import AboutPage from '@/pages/AboutPage.vue';
-// import AboutProject from '@/pages/AboutProject.vue';
-
 // import { createPinia } from 'pinia'
 
 const router = createRouter({

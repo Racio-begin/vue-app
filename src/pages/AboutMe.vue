@@ -1,5 +1,5 @@
 <template>
-	<main class="about-me">
+	<div class="about-me">
 		<div class="container">
 			<h1 class="about-me__title">Обо мне</h1>
 
@@ -7,7 +7,7 @@
 				<FeedbackForm />
 			</div>
 		</div>
-	</main>
+	</div>
 </template>
 
 <script>
@@ -27,7 +27,6 @@ export default {
 	justify-content: center;
 
 	&__title {
-		// margin: 0 auto 20px;
 		text-align: center;
 	}
 

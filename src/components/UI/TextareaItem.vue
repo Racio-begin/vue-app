@@ -3,7 +3,6 @@
 		:value="modelValue"
 		@input="updateInput"
 		class="textarea"
-		:type="inputType"
 		:placeholder="inputPlaceholder"
 		:rows="rows"
 		:cols="cols"

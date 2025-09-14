@@ -24,7 +24,7 @@ const router = createRouter({
 			component: () => import('@/pages/AboutProject.vue'),
 		},
 	],
-	history: createWebHistory()
+	history: createWebHistory(import.meta.env.VITE_BASE || '/')
 });
 
 const app = createApp(App);

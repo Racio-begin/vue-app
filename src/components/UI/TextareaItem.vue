@@ -3,6 +3,7 @@
 		:value="modelValue"
 		@input="updateInput"
 		class="textarea"
+		:name="name"
 		:placeholder="inputPlaceholder"
 		:rows="rows"
 		:cols="cols"
@@ -19,6 +20,10 @@ export default {
 			String,
 			Number,
 		],
+		name: {
+			type: String,
+			required: true,
+		},
 		inputPlaceholder: {
 			type: String,
 			required: true,

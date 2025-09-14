@@ -1,14 +1,23 @@
 <template>
-	<input
-		:value="inputType === 'tel' ? maskedValue : modelValue"
-		v-imask="inputType === 'tel' ? phoneMask : null"
-		class="input"
-		:type="inputType"
-		:placeholder="inputPlaceholder"
-		:required="required"
-		@input="updateInput"
-		@accept="onAccept"
-	>
+	<div class="input">
+		<input
+			:value="inputType === 'tel' ? maskedValue : modelValue"
+			v-imask="inputType === 'tel' ? phoneMask : null"
+			class="input__item"
+			:name="name"
+			:type="inputType"
+			:placeholder="inputPlaceholder"
+			:required="required"
+			@input="updateInput"
+			@accept="onAccept"
+		>
+		<span
+			class="input__error"
+			v-if="error"
+		>
+			{{ error }}
+		</span>
+	</div>
 </template>
 
 <script>
@@ -21,6 +30,10 @@ export default {
 			String,
 			Number,
 		],
+		name: {
+			type: String,
+			required: true,
+		},
 		inputType: {
 			type: String,
 			required: true,
@@ -32,6 +45,10 @@ export default {
 		required: {
 			type: Boolean,
 			default: false,
+		},
+		error: {
+			type: String,
+			default: null,
 		}
 	},
 	data() {
@@ -47,6 +64,7 @@ export default {
 		updateInput(event) {
 			if (this.inputType !== 'tel') {
 				this.$emit('update:modelValue', event.target.value);
+				this.$emit('validate', event.target.value);
 			}
 		},
 		onAccept(event) {
@@ -54,6 +72,7 @@ export default {
 				const maskRef = event.detail;
 				this.maskedValue = maskRef.value;
 				this.$emit('update:modelValue', maskRef.unmaskedValue);
+				this.$emit('validate', maskRef.unmaskedValue);
 			}
 		},
 	},
@@ -74,8 +93,20 @@ export default {
 @use "@/assets/styles/vars" as *;
 
 .input {
-	padding: 10px 20px;
-	border: none;
-	border-bottom: 1px solid $color-primary;
+	position: relative;
+
+	&__item {
+		border-bottom: 1px solid $color-primary;
+		border: none;
+		padding: 10px 20px;
+	}
+
+	&__error {
+		position: absolute;
+		top: calc(100% + 4px);
+		left: 0;
+		color: $color-text-error;
+		font-size: 12px;
+	}
 }
 </style>

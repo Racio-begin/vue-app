@@ -13,7 +13,6 @@
 					На главную
 				</router-link>
 			</p>
-
 		</div>
 	</div>
 </template>

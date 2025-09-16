@@ -23,6 +23,14 @@ const router = createRouter({
 			path: '/about-project',
 			component: () => import('@/pages/AboutProject.vue'),
 		},
+		{
+			path: '/ui',
+			component: () => import('@/pages/UIPage.vue'),
+		},
+		{
+			path: '/:pathMatch(.*)*',
+			component: () => import('@/pages/NotFound.vue'),
+		},
 	],
 	history: createWebHistory(import.meta.env.VITE_BASE || '/')
 });

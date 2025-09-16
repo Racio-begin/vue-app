@@ -20,6 +20,15 @@
 		>
 			Обо мне
 		</router-link>
+
+		<router-link
+			class="nav__link"
+			to="/ui"
+		>
+			UI
+		</router-link>
+
+
 	</nav>
 </template>
 

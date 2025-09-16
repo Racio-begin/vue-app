@@ -1,18 +1,21 @@
 <template>
 	<div class="not-found">
 		<div class="container">
-			<h1>404</h1>
-			<h2>Страница не найдена</h2>
+			<div class="not-found__inner">
 
-			<p>
-				Не переживайте, вы можете вернуться
-				<router-link
-					to="/"
-					class="not-found__link"
-				>
-					На главную
-				</router-link>
-			</p>
+				<h1>404</h1>
+				<h2>Страница не найдена</h2>
+
+				<p>
+					Но не переживайте, вы можете вернуться
+					<router-link
+						to="/"
+						class="not-found__link"
+					>
+						на главную
+					</router-link>
+				</p>
+			</div>
 		</div>
 	</div>
 </template>
@@ -23,4 +26,13 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.not-found {
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
+}
+</style>

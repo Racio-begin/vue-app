@@ -1,0 +1,32 @@
+@use '@/assets/styles/vars' as *;
+
+.section {
+	width: 100%;
+	padding: 100px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	&__inner {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 20px;
+	}
+
+	&_light {
+		background-color: $color-white;
+	}
+
+	&_dark {
+		background-color: $color-black;
+	}
+
+	&_grey {
+		background-color: $color-grey;
+	}
+
+	&_blue {
+		background-color: $color-blue;
+	}
+}

@@ -1,1 +1,14 @@
+/* 
+Global
+*/
 @use '@/assets/styles/global' as *;
+
+/* 
+Sections
+*/
+@use '@/assets/styles/sections/section' as *;
+
+/* 
+Blocks
+*/
+@use '@/assets/styles/blocks/card' as *;

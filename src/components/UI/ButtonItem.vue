@@ -42,30 +42,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:color";
+@use "sass:map";
+
 @use "@/assets/styles/vars" as *;
 
 $themes: (
 	primary: (color-text: $color-text-primary,
 		color-background: $color-primary,
-		color-hover: darken($color-primary, 10%),
+		color-hover: color.adjust($color-primary, $lightness: -10%),
 		color-border: $color-primary,
 	),
 
 	secondary: (color-text: $color-white,
 		color-background: #6c757d,
-		color-hover: darken(#6c757d, 10%),
+		color-hover: color.adjust(#6c757d, $lightness: -10%),
 		color-border: #6c757d,
 	),
 
 	success: (color-text: $color-white,
 		color-background: #28a745,
-		color-hover: darken(#28a745, 10%),
+		color-hover: color.adjust(#28a745, $lightness: -10%),
 		color-border: #28a745,
 	),
 
 	danger: (color-text: $color-white,
 		color-background: #dc3546,
-		color-hover: darken(#dc3545, 10%),
+		color-hover: color.adjust(#dc3545, $lightness: -10%),
 		color-border: #dc3545,
 	),
 );
@@ -81,25 +84,25 @@ $themes: (
 
 	@each $theme, $colors in $themes {
 		&__theme-#{$theme} {
-			background-color: map-get($colors, color-background);
-			color: map-get($colors, color-text);
-			border: 1px solid map-get($colors, color-border);
+			background-color: map.get($colors, color-background);
+			color: map.get($colors, color-text);
+			border: 1px solid map.get($colors, color-border);
 
 			&:hover:not(.button--disabled):not(.button--loading) {
-				background-color: map-get($colors, color-hover);
-				border-color: map-get($colors, color-hover);
+				background-color: map.get($colors, color-hover);
+				border-color: map.get($colors, color-hover);
 			}
 
 			// &:active:not(.button--disabled):not(.button--loading) {
 			// animation: press 0.2s ease-in-out;
 			// transform: scale(0.98);
 			// outline: none;
-			// box-shadow: 0 0 0 3px rgba(map-get($colors, color-background), 0.3);
+			// box-shadow: 0 0 0 3px rgba(map.get($colors, color-background), 0.3);
 			// }
 
 			// &:focus {
 			// 	outline: none;
-			// 	box-shadow: 0 0 0 3px rgba(map-get($colors, color-background), 0.3);
+			// 	box-shadow: 0 0 0 3px rgba(map.get($colors, color-background), 0.3);
 			// }
 		}
 	}

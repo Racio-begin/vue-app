@@ -31,6 +31,7 @@ $themes: (
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 50px;
+	transition: $transition;
 	overflow: hidden;
 
 	&__title {
@@ -72,5 +73,9 @@ $themes: (
 			// 	box-shadow: 0 0 0 3px rgba(map-get($colors, color-background), 0.3);
 			// }
 		}
+	}
+
+	&:hover {
+		transform: translateY(-5px);
 	}
 }

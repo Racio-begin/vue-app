@@ -15,6 +15,28 @@ $color-text-error: #fd5812;
 $color-background-opacity: rgba(0, 0, 0, 0.5);
 
 /*
+** Media
+*/
+$media-mobile: 'max-width: 600px';
+$media-mobile-revert: 'min-width: 661px';
+$media-tablet: 'max-width: 1024px';
+$media-tablet-revert: 'min-width: 1025px';
+$media-desktop-small: 'max-width: 1220px';
+$media-desktop-small-revert: 'min-width: 1221px';
+$media-desktop: 'max-width: 1440px';
+$media-desktop-revert: 'min-width: 1441px';
+$media-desktop-big: 'max-width: 1920px';
+$media-desktop-big-revert: 'min-width: 1921px';
+
+/*
+** Fonts
+*/
+// $font-family-regular: 'Suisse Intl Regular', Arial, sans;
+// $font-family-medium: 'Suisse Intl Medium', Arial, sans;
+// $font-family-semibold: 'Suisse Intl SemiBold', Arial, sans;
+
+
+/*
 	animation
  */
 $transition: all 0.2s ease-in-out;

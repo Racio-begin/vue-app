@@ -46,7 +46,7 @@
 				<section class="section section_blue">
 					<div class="container">
 						<div class="section__inner">
-							<div class="card card__theme-primary">
+							<div class="card card_theme-primary">
 								<div class="card__title-wrapper">
 									<h2 class="card__title">Искусственный интеллект</h2>
 									<p class="card__text">Будущее уже наступило: как ИИ меняет нашу жизнь</p>
@@ -59,7 +59,7 @@
 								>
 							</div>
 
-							<div class="card card__theme-secondary">
+							<div class="card card_theme-secondary">
 								<div class="card__title-wrapper">
 									<h2 class="card__title">Космические путешествия</h2>
 									<p class="card__text">Первые туристы на Марсе: когда ждать?</p>
@@ -72,7 +72,7 @@
 								>
 							</div>
 
-							<div class="card card__theme-ligth">
+							<div class="card card_theme-ligth">
 								<div class="card__title-wrapper">
 									<h2 class="card__title">Устойчивое развитие</h2>
 									<p class="card__text">Зеленые технологии для спасения планеты</p>
@@ -85,7 +85,7 @@
 								>
 							</div>
 
-							<div class="card card__theme-dark">
+							<div class="card card_theme-dark">
 								<div class="card__title-wrapper">
 									<h2 class="card__title">Цифровая трансформация</h2>
 									<p class="card__text">Как блокчейн меняет финансовую систему</p>
@@ -117,7 +117,7 @@
 				<section class="section section_grey">
 					<div class="container">
 						<div class="section__inner">
-							<div class="card card__theme-primary">
+							<div class="card card_theme-primary">
 								<div class="card__title-wrapper">
 									<h2 class="card__title">Умные города</h2>
 									<p class="card__text">Технологии для комфортной городской среды</p>
@@ -143,7 +143,7 @@
 								>
 							</div>
 
-							<div class="card card__theme-ligth">
+							<div class="card card_theme-ligth">
 								<div class="card__title-wrapper">
 									<h2 class="card__title">Робототехника</h2>
 									<p class="card__text">Автоматизация производства и быта</p>
@@ -156,7 +156,7 @@
 								>
 							</div>
 
-							<div class="card card__theme-dark">
+							<div class="card card_theme-dark">
 								<div class="card__title-wrapper">
 									<h2 class="card__title">Квантовые вычисления</h2>
 									<p class="card__text">Следующий прорыв в компьютерных технологиях</p>
@@ -169,7 +169,7 @@
 								>
 							</div>
 
-							<div class="card card__theme-secondary">
+							<div class="card card_theme-secondary">
 								<div class="card__title-wrapper">
 									<h2 class="card__title">Нейроинтерфейсы</h2>
 									<p class="card__text">Связь между мозгом и компьютером становится реальностью</p>

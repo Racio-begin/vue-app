@@ -12,6 +12,14 @@
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
 		gap: 20px;
+
+		@media ($media-tablet) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		@media ($media-mobile) {
+			grid-template-columns: repeat(1, 1fr);
+		}
 	}
 
 	&_light {

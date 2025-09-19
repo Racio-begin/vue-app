@@ -51,7 +51,7 @@ $themes: (
 	}
 
 	@each $theme, $colors in $themes {
-		&__theme-#{$theme} {
+		&_theme-#{$theme} {
 			background-color: map.get($colors, color-background);
 			color: map.get($colors, color-text);
 			border: 1px solid map.get($colors, color-border);
@@ -75,7 +75,10 @@ $themes: (
 		}
 	}
 
-	&:hover {
-		transform: translateY(-5px);
+	@media (hover: hover) {
+		&:hover {
+			transform: translateY(-5px);
+		}
 	}
+
 }

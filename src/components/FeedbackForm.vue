@@ -198,11 +198,9 @@ export default {
 	}
 
 	&__input {
-		width: 100%;
 		margin-bottom: 25px;
 
 		&-message {
-			width: 100%;
 			height: 100px;
 
 			&::placeholder {

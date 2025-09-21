@@ -35,7 +35,6 @@ export default {
 @use "@/assets/styles/vars" as *;
 
 .quote {
-	width: 100%;
 	padding: 20px 40px;
 	border: 2px solid $color-primary;
 	border-radius: 15px;

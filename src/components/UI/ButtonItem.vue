@@ -92,22 +92,10 @@ $themes: (
 				background-color: map.get($colors, color-hover);
 				border-color: map.get($colors, color-hover);
 			}
-
-			// &:active:not(.button--disabled):not(.button--loading) {
-			// animation: press 0.2s ease-in-out;
-			// transform: scale(0.98);
-			// outline: none;
-			// box-shadow: 0 0 0 3px rgba(map.get($colors, color-background), 0.3);
-			// }
-
-			// &:focus {
-			// 	outline: none;
-			// 	box-shadow: 0 0 0 3px rgba(map.get($colors, color-background), 0.3);
-			// }
 		}
 	}
 
-	// Состояние неактивности
+	// Неактивное состояние
 	&_disabled {
 		opacity: 0.65;
 		cursor: not-allowed;

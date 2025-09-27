@@ -31,7 +31,7 @@ $themes: (
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 50px;
-	transition: $transition;
+	transition: $transition-fast;
 	overflow: hidden;
 
 	&__title {

@@ -3,12 +3,14 @@
 		class="quotes-list"
 		v-if="quotes.length"
 	>
-		<QuoteItem
-			v-for="quote in quotes"
-			:quote="quote"
-			:key="quote.id"
-			@removeQuote="$emit('removeQuote', $event)"
-		/>
+		<TransitionGroup name="quotes-list">
+			<QuoteItem
+				v-for="quote in quotes"
+				:quote="quote"
+				:key="quote.id"
+				@removeQuote="$emit('removeQuote', $event)"
+			/>
+		</TransitionGroup>
 	</div>
 
 	<div
@@ -37,13 +39,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/vars" as *;
+
 .quotes-list {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	position: relative;
 
 	&_empty {
 		text-align: center;
 	}
+
+	//* transition-group animations *//
+	&-enter-active,
+	&-leave-active,
+	&-move {
+		transition: $transition-slow;
+	}
+
+	&-enter-from,
+	&-leave-to {
+		opacity: 0;
+		transform: translateX(40px);
+	}
+
+	&-leave-active {
+		position: absolute;
+		// width: 100%;
+	}
+
+	//* transition-group animations *//
 }
 </style>

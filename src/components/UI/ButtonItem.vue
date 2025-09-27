@@ -80,7 +80,7 @@ $themes: (
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	transition: $transition;
+	transition: $transition-fast;
 
 	@each $theme, $colors in $themes {
 		&__theme-#{$theme} {

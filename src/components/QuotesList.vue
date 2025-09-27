@@ -1,4 +1,7 @@
 <template>
+	<h2 style="text-align: end; margin-bottom: 20px">
+		Всего постов: {{ quotes.length }}
+	</h2>
 	<TransitionGroup
 		class="quotes-list"
 		tag="ul"

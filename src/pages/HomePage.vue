@@ -79,6 +79,7 @@ export default {
 		async fetchQuotes() {
 			try {
 				this.isQuotesLoading = true;
+
 				const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes', {
 					params: {
 						limit: 10,
@@ -88,6 +89,7 @@ export default {
 						'content-type': 'application/json',
 					}
 				});
+
 				this.quotes = response.data;
 			} catch (error) {
 				alert(error.message);

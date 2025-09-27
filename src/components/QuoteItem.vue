@@ -1,5 +1,5 @@
 <template>
-	<div class="quote">
+	<li class="quote">
 		<div class="quote__content">
 			<p class="quote__quote">{{ quote.quote }}</p>
 			<h2 class="quote__name">«{{ quote.name }}»</h2>
@@ -11,7 +11,7 @@
 				@click="removeQuote"
 			/>
 		</div>
-	</div>
+	</li>
 </template>
 
 <script>

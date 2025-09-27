@@ -1,17 +1,18 @@
 <template>
-	<div
+	<TransitionGroup
 		class="quotes-list"
+		tag="ul"
+		name="fade-quotes-list"
 		v-if="quotes.length"
+		@beforeLeave="beforeLeave"
 	>
-		<TransitionGroup name="quotes-list">
-			<QuoteItem
-				v-for="quote in quotes"
-				:quote="quote"
-				:key="quote.id"
-				@removeQuote="$emit('removeQuote', $event)"
-			/>
-		</TransitionGroup>
-	</div>
+		<QuoteItem
+			v-for="quote in quotes"
+			:quote="quote"
+			:key="quote.id"
+			@removeQuote="$emit('removeQuote', $event)"
+		/>
+	</TransitionGroup>
 
 	<div
 		class="quotes-list_empty"
@@ -35,6 +36,18 @@ export default {
 	components: {
 		QuoteItem,
 	},
+	methods: {
+		//* Костыль для анимации flex-контейнера *//
+		beforeLeave(el) {
+			const rect = el.getBoundingClientRect(); // Более точно, чем offset (учитывает скролл)
+			const parentRect = el.parentElement.getBoundingClientRect();
+			el.style.position = 'absolute';
+			el.style.left = `${rect.left - parentRect.left}px`;
+			el.style.top = `${rect.top - parentRect.top}px`;
+			el.style.width = `${rect.width}px`;
+			el.style.height = `${rect.height}px`;
+		},
+	},
 };
 </script>
 
@@ -50,8 +63,11 @@ export default {
 	&_empty {
 		text-align: center;
 	}
+}
 
-	//* transition-group animations *//
+//* transition-group animations *//
+.fade-quotes-list {
+
 	&-enter-active,
 	&-leave-active,
 	&-move {
@@ -68,7 +84,6 @@ export default {
 		position: absolute;
 		// width: 100%;
 	}
-
-	//* transition-group animations *//
 }
-</style>
+
+//* transition-group animations *//</style>

@@ -1,21 +1,23 @@
 <template>
-	<div
-		class="dialog"
-		v-if="show"
-		@click="closeDialog"
-	>
+	<Transition name="fade-dialog">
 		<div
-			class="dialog__inner"
-			@click.stop
+			class="dialog"
+			v-if="show"
+			@click="closeDialog"
 		>
-			<slot></slot>
-			<ButtonItem
-				name="Я крестик"
-				class="dialog__close"
-				@click="closeDialog"
-			/>
+			<div
+				class="dialog__inner"
+				@click.stop
+			>
+				<slot></slot>
+				<ButtonItem
+					name="Я крестик"
+					class="dialog__close"
+					@click="closeDialog"
+				/>
+			</div>
 		</div>
-	</div>
+	</Transition>
 </template>
 
 <script>
@@ -38,16 +40,15 @@ export default {
 
 <style lang="scss" scoped>
 @use "@/assets/styles/vars" as *;
+@use "@/assets/styles/mixins" as *;
 
 .dialog {
+	@include flex-center;
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	z-index: 100;
 	background-color: $color-background-opacity;
 
@@ -63,6 +64,19 @@ export default {
 		top: -40px;
 		right: -110px;
 		cursor: pointer;
+	}
+}
+
+.fade-dialog {
+
+	&-enter-active,
+	&-leave-active {
+		transition: $transition-slow;
+	}
+
+	&-enter-from,
+	&-leave-to {
+		opacity: 0;
 	}
 }
 </style>

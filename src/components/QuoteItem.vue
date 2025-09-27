@@ -2,7 +2,11 @@
 	<li class="quote">
 		<div class="quote__content">
 			<p class="quote__quote">{{ quote.quote }}</p>
-			<h2 class="quote__name">«{{ quote.name }}»</h2>
+			<div class="quote__info">
+				<h2 class="quote__name">«{{ quote.name }}»,</h2>
+				<p class="quote__text">{{ quote.date }}</p>
+			</div>
+
 		</div>
 
 		<div class="quote__buttons">
@@ -55,8 +59,18 @@ export default {
 		font-size: 22px;
 	}
 
+	&__info {
+		display: flex;
+		align-items: baseline;
+		gap: 10px;
+	}
+
 	&__name {
 		font-size: 18px;
+	}
+
+	&__text {
+		font-size: 14px;
 	}
 
 	&__buttons {

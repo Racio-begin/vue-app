@@ -8,6 +8,14 @@
 
 				<p>
 					Но не переживайте, вы можете вернуться
+					<a
+						class="not-found__button link"
+						href="javascript:void(0)"
+						@click="goBack"
+					>
+						назад
+					</a>
+					или
 					<router-link
 						to="/"
 						class="not-found__link"
@@ -20,9 +28,13 @@
 	</div>
 </template>
 
-<script>
-export default {
-	name: "NotFound"
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goBack = () => {
+	router.back();
 };
 </script>
 

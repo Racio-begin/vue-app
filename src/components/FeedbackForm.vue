@@ -61,115 +61,79 @@
 	</form>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script setup>
+import { reactive, nextTick } from 'vue';
 import { useDebounce } from '@/composables/useDebounce';
 import { EMAIL_REGEXP } from '@/constants/regexp';
 
-import TextareaItem from './UI/TextareaItem.vue';
+const formData = reactive({
+	name: '',
+	phone: '',
+	email: '',
+	message: '',
+});
 
-export default {
-	name: "FeedbackForm",
-	data() {
-		return {
-			formData: {
-				name: '',
-				phone: '',
-				email: '',
-				message: '',
-			},
-			errors: {
-				name: '',
-				phone: '',
-				email: '',
-			}
-		};
-	},
-	setup() {
-		const nameError = ref(null);
-		const phoneError = ref(null);
-		const emailError = ref(null);
+const errors = reactive({
+	name: '',
+	phone: '',
+	email: '',
+});
 
-		const validateName = (value) => {
-			if (!value) {
-				nameError.value = 'Пожалуйста, введите имя';
-			} else if (value.length < 2) {
-				nameError.value = 'Имя должно содержать не менее 2 символов';
-			} else {
-				nameError.value = '';
-			}
-		};
-
-		const validatePhone = (value) => {
-			if (!value) {
-				phoneError.value = 'Пожалуйста, введите номер телефона';
-			} else if (value.length < 11) {
-				phoneError.value = 'Номер телефона должен содержать не менее 11 цифр';
-			} else {
-				phoneError.value = '';
-			}
-		};
-
-		const validateEmail = (value) => {
-			const emailRegex = EMAIL_REGEXP;
-
-			if (!value) {
-				emailError.value = 'Пожалуйста, введите email';
-			} else if (!emailRegex.test(value)) {
-				emailError.value = 'Некорректный формат email';
-			} else {
-				emailError.value = '';
-			}
-		};
-
-		const debouncedValidateName = useDebounce(validateName, 300);
-		const debouncedValidatePhone = useDebounce(validatePhone, 300);
-		const debouncedValidateEmail = useDebounce(validateEmail, 300);
-
-		return {
-			nameError,
-			phoneError,
-			emailError,
-			debouncedValidateName,
-			debouncedValidatePhone,
-			debouncedValidateEmail,
-		};
-	},
-	watch: {
-		// Синхронизируем ошибки с локальным объектом errors
-		nameError(newError) {
-			this.errors.name = newError;
-		},
-		phoneError(newError) {
-			this.errors.phone = newError;
-		},
-		emailError(newError) {
-			this.errors.email = newError;
-		},
-	},
-	methods: {
-		onSubmit() {
-			console.log('Данные формы:', this.formData);
-
-			if (!this.formData.name || !this.formData.phone || !this.formData.email) {
-				alert('Заполните обязательные поля, пжлст');
-				return;
-			}
-
-			this.sendForm();
-		},
-		sendForm() {
-			console.log("Отправка данных:", this.formData);
-			alert("Данные отправлены :)");
-
-			this.formData = {
-				name: '',
-				phone: '',
-				email: '',
-				message: '',
-			};
-		}
+const validateName = (value) => {
+	if (!value) {
+		errors.name = 'Пожалуйста, введите имя';
+	} else if (value.length < 2) {
+		errors.name = 'Имя должно содержать не менее 2 символов';
+	} else {
+		errors.name = '';
 	}
+};
+
+const validatePhone = (value) => {
+	if (!value) {
+		errors.phone = 'Пожалуйста, введите номер телефона';
+	} else if (value.length < 11) {
+		errors.phone = 'Номер телефона должен содержать не менее 11 цифр';
+	} else {
+		errors.phone = '';
+	}
+};
+
+const validateEmail = (value) => {
+	const emailRegex = EMAIL_REGEXP;
+
+	if (!value) {
+		errors.email = 'Пожалуйста, введите email';
+	} else if (!emailRegex.test(value)) {
+		errors.email = 'Некорректный формат email';
+	} else {
+		errors.email = '';
+	}
+};
+
+const debouncedValidateName = useDebounce(validateName, 300);
+const debouncedValidatePhone = useDebounce(validatePhone, 300);
+const debouncedValidateEmail = useDebounce(validateEmail, 300);
+
+const onSubmit = () => {
+	console.log('Данные формы:', formData);
+
+	if (!formData.name || !formData.phone || !formData.email) {
+		alert('Заполните обязательные поля, пжлст');
+		return;
+	};
+
+	sendForm();
+};
+
+const sendForm = () => {
+	console.log("Отправка данных:", formData);
+	alert("Данные отправлены :)");
+
+	formData.name = '';
+	formData.phone = '';
+	formData.email = '';
+	formData.message = '';
 };
 </script>
 

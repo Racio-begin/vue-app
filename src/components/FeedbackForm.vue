@@ -66,12 +66,11 @@ import { reactive, nextTick } from 'vue';
 import { useDebounce } from '@/composables/useDebounce';
 import { EMAIL_REGEXP } from '@/constants/regexp';
 import {
-	MIN_LENGTH_FIELD,
 	MIN_LENGTH_FIELD_NAME,
-	REQUIRED_FIELD,
-	REQUIRED_FIELD_ALL,
 	MIN_LENGTH_FIELD_PHONE,
 	INCORRECT_EMAIL,
+	REQUIRED_FIELD,
+	REQUIRED_FIELD_ALL,
 	EMPTY_FIELD,
 } from '@/constants/informMessages';
 

@@ -2,36 +2,37 @@
 	<li class="quote">
 		<div class="quote__content">
 			<p class="quote__quote">{{ quote.quote }}</p>
-			<div class="quote__info">
-				<h2 class="quote__name">«{{ quote.name }}»,</h2>
-				<p class="quote__text">{{ quote.date }}</p>
-			</div>
 
+			<div class="quote__info">
+				<h2 class="quote__name">«{{ quote.name }}»</h2>
+				<p class="quote__text">, {{ quote.date }}</p>
+			</div>
 		</div>
 
 		<div class="quote__buttons">
 			<ButtonItem
 				name="Удалить"
+				theme="danger"
 				@click="removeQuote"
 			/>
 		</div>
 	</li>
 </template>
 
-<script>
-export default {
-	name: "QuoteItem",
-	props: {
-		quote: {
-			type: Object,
-			required: true,
-		},
+<script setup>
+import { defineProps, defineEmits } from 'vue';
+
+const props = defineProps({
+	quote: {
+		type: Object,
+		required: true,
 	},
-	methods: {
-		removeQuote() {
-			this.$emit('removeQuote', this.quote.id);
-		}
-	}
+});
+
+const emit = defineEmits(['removeQuote']);
+
+const removeQuote = () => {
+	emit('removeQuote', props.quote.id);
 };
 </script>
 

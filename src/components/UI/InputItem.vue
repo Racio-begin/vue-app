@@ -20,73 +20,86 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import {
+	defineProps,
+	defineEmits,
+	defineOptions,
+	ref,
+	watch,
+} from 'vue';
+
 import { IMaskDirective } from 'vue-imask';
 
-export default {
-	name: "InputItem",
-	props: {
-		modelValue: [
-			String,
-			Number,
-		],
-		name: {
-			type: String,
-			required: true,
-		},
-		inputType: {
-			type: String,
-			required: true,
-		},
-		inputPlaceholder: {
-			type: String,
-			required: true,
-		},
-		required: {
-			type: Boolean,
-			default: false,
-		},
-		error: {
-			type: String,
-			default: null,
-		}
-	},
-	data() {
-		return {
-			phoneMask: {
-				mask: '+{7} (000) 000-00-00',
-				lazy: false
-			},
-			maskedValue: '',
-		};
-	},
-	methods: {
-		updateInput(event) {
-			if (this.inputType !== 'tel') {
-				this.$emit('update:modelValue', event.target.value);
-				this.$emit('validate', event.target.value);
-			}
-		},
-		onAccept(event) {
-			if (this.inputType === 'tel') {
-				const maskRef = event.detail;
-				this.maskedValue = maskRef.value;
-				this.$emit('update:modelValue', maskRef.unmaskedValue);
-				this.$emit('validate', maskRef.unmaskedValue);
-			}
-		},
-	},
-	watch: {
-		modelValue(newValue) {
-			if (this.inputType === 'tel' && !newValue) {
-				this.maskedValue = '';
-			}
-		}
-	},
+defineOptions({
 	directives: {
 		imask: IMaskDirective
+	}
+});
+
+const props = defineProps({
+	modelValue: [
+		String,
+		Number,
+	],
+	name: {
+		type: String,
+		required: true,
 	},
+	inputType: {
+		type: String,
+		required: true,
+	},
+	inputPlaceholder: {
+		type: String,
+		required: true,
+	},
+	required: {
+		type: Boolean,
+		default: false,
+	},
+	error: {
+		type: String,
+		default: null,
+	}
+});
+
+const phoneMask = {
+	mask: '+{7} (000) 000-00-00',
+	lazy: false
 };
+
+const maskedValue = ref('');
+
+const emit = defineEmits(['update:modelValue', 'validate']);
+
+const updateInput = (event) => {
+	if (props.inputType !== 'tel') {
+		emit('update:modelValue', event.target.value);
+		emit('validate', event.target.value);
+	}
+};
+
+const onAccept = (event) => {
+	if (props.inputType === 'tel') {
+		const maskRef = event.detail;
+
+		maskedValue.value = maskRef.value;
+
+		emit('update:modelValue', maskRef.unmaskedValue);
+		emit('validate', maskRef.unmaskedValue);
+	}
+};
+
+// Эмуляция watch для modelValue
+watch(
+	() => props.modelValue,
+	(newValue) => {
+		if (props.inputType === 'tel' && !newValue) {
+			maskedValue.value = '';
+		}
+	}
+);
 </script>
 
 <style lang="scss" scoped>

@@ -6,17 +6,19 @@
 		<h2>Добавить цитату</h2>
 		<div class="form__inputs">
 			<InputItem
-				v-model="quote.name"
+				ref="focusInput"
+				name="input-quote"
+				v-model="quote.quote"
 				inputType="text"
 				inputPlaceholder="Введите цитату"
 			/>
 
 			<InputItem
-				v-model="quote.quote"
+				name="input-name"
+				v-model="quote.name"
 				inputType="text"
 				inputPlaceholder="Введите автора"
 			/>
-
 		</div>
 		<ButtonItem
 			@click="addQuote"
@@ -25,64 +27,80 @@
 	</form>
 </template>
 
-<script>
-export default {
-	name: "QuoteForm",
-	props: {
-		quotes: {
-			type: Array,
-			required: true,
-		},
-		closeDialog: {
-			type: Function,
-			required: false,
-		}
+<script setup>
+import {
+	defineProps,
+	defineEmits,
+	reactive,
+	ref,
+	nextTick,
+	onMounted,
+	onBeforeUnmount,
+} from 'vue';
+
+import { REQUIRED_FIELD_ALL } from '@/constants/informMessages';
+
+const props = defineProps({
+	quotes: {
+		type: Array,
+		required: true,
 	},
-	data() {
-		return {
-			quote: {
-				name: '',
-				quote: '',
-			}
-		};
-	},
-	methods: {
-		addQuote(event) {
-			event.preventDefault();
+	closeDialog: {
+		type: Function,
+		required: false,
+	}
+});
 
-			if (!this.quote.name.trim() || !this.quote.quote.trim()) {
-				alert('Пожалуйста, заполните поля');
-				return;
-			}
+const emit = defineEmits(['addQuote']);
 
-			this.quote.id = Date.now();
+const quote = reactive({
+	name: '',
+	quote: '',
+});
 
-			this.$emit('addQuote', this.quote);
+const focusInput = ref(null);
 
-			this.quote = {
-				name: '',
-				quote: '',
-			};
+const addQuote = (event) => {
+	event.preventDefault();
 
-			if (this.closeDialog) {
-				this.closeDialog();
-			}
-		},
-		handleEscape(event) {
-			if (event.key === 'Escape') {
-				if (this.closeDialog) {
-					this.closeDialog();
-				}
-			}
-		}
-	},
-	mounted() {
-		document.addEventListener('keydown', this.handleEscape);
-	},
-	beforeUnmount() {
-		document.removeEventListener('keydown', this.handleEscape);
+	if (!quote.name.trim() || !quote.quote.trim()) {
+		alert(REQUIRED_FIELD_ALL);
+		return;
+	}
+
+	quote.id = Date.now();
+
+	emit('addQuote', { ...quote });
+
+	quote.name = '';
+	quote.quote = '';
+
+	if (props.closeDialog) {
+		props.closeDialog();
 	}
 };
+
+const handleEscape = (event) => {
+	if (event.key === 'Escape') {
+		if (props.closeDialog) {
+			props.closeDialog();
+		}
+	}
+};
+
+onMounted(() => {
+	document.addEventListener('keydown', handleEscape);
+
+	nextTick(() => {
+		if (focusInput.value && focusInput.value.$el) {
+			focusInput.value.$el.querySelector('input').focus();
+		}
+	});
+});
+
+onBeforeUnmount(() => {
+	document.removeEventListener('keydown', handleEscape);
+});
 </script>
 
 <style lang="scss" scoped>

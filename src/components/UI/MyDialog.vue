@@ -20,22 +20,21 @@
 	</Transition>
 </template>
 
-<script>
-export default {
-	name: "MyDialog",
-	props: {
-		show: {
-			type: Boolean,
-			default: false,
-		}
-	},
-	methods: {
-		closeDialog() {
-			this.$emit('update:show', false);
-		}
-	}
-}
+<script setup>
+import { defineProps, defineEmits } from 'vue';
 
+const emit = defineEmits(['update:show']);
+
+const props = defineProps({
+	show: {
+		type: Boolean,
+		default: false,
+	}
+});
+
+const closeDialog = () => {
+	emit('update:show', false);
+};
 </script>
 
 <style lang="scss" scoped>

@@ -16,29 +16,26 @@
 	</button>
 </template>
 
-<script>
-export default {
-	name: "ButtonItem",
-	props: {
-		name: {
-			type: String,
-			required: true,
-		},
-		theme: {
-			type: String,
-			default: 'primary',
-			validator: (value) => ['primary', 'secondary', 'success', 'danger'].includes(value),
-		},
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		loading: {
-			type: Boolean,
-			default: false,
-		},
-	}
-};
+<script setup>
+const props = defineProps({
+	name: {
+		type: String,
+		required: true,
+	},
+	theme: {
+		type: String,
+		default: 'primary',
+		validator: (value) => ['primary', 'secondary', 'success', 'danger'].includes(value),
+	},
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
+	loading: {
+		type: Boolean,
+		default: false,
+	},
+});
 </script>
 
 <style lang="scss" scoped>

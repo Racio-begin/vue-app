@@ -40,68 +40,58 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
 import QuoteForm from '@/components/QuoteForm.vue';
 import QuotesList from '@/components/QuotesList.vue';
 
-import axios from 'axios';
+const quotes = ref([]);
+const isDialogVisible = ref(false);
+const isQuotesLoading = ref(false);
 
-export default {
-	name: "HomePage",
-	components: {
-		QuoteForm,
-		QuotesList,
-	},
-	data() {
-		return {
-			quotes: [],
-			isDialogVisible: false,
-			isQuotesLoading: false,
-		};
-	},
-	methods: {
-		addQuote(quote) {
-			this.quotes.push(quote);
-		},
+const addQuote = (quote) => {
+	quotes.value.push(quote);
+};
 
-		removeQuote(quote) {
-			this.quotes = this.quotes.filter(q => q.id !== quote);
-		},
+const removeQuote = (quoteId) => {
+	quotes.value = quotes.value.filter(q => q.id !== quoteId);
+};
 
-		showDialog() {
-			this.isDialogVisible = true;
-		},
+const showDialog = () => {
+	isDialogVisible.value = true;
+};
 
-		closeDialog() {
-			this.isDialogVisible = false;
-		},
+const closeDialog = () => {
+	isDialogVisible.value = false;
+};
 
-		async fetchQuotes() {
-			try {
-				this.isQuotesLoading = true;
+const fetchQuotes = async () => {
+	try {
+		isQuotesLoading.value = true;
 
-				const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes', {
-					params: {
-						limit: 10,
-						page: 1,
-					},
-					headers: {
-						'content-type': 'application/json',
-					}
-				});
-
-				this.quotes = response.data;
-			} catch (error) {
-				alert(error.message);
-			} finally {
-				this.isQuotesLoading = false;
+		const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes', {
+			params: {
+				limit: 10,
+				page: 1,
+			},
+			headers: {
+				'content-type': 'application/json',
 			}
-		},
-	},
-	mounted() {
-		this.fetchQuotes();
+		});
+
+		quotes.value = response.data;
+	} catch (error) {
+		alert(error.message);
+	} finally {
+		isQuotesLoading.value = false;
 	}
 };
+
+onMounted(() => {
+	fetchQuotes();
+});
 </script>
 
 <style lang="scss" scoped>

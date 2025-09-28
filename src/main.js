@@ -1,10 +1,10 @@
-import '@/assets/styles/main.scss';
-
-import components from '@/components/UI';
-
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
+
+import componentsPlugin from '@/plugins/components';
 import App from '@/App.vue';
+
+import '@/assets/styles/main.scss';
 
 // import { createPinia } from 'pinia'
 
@@ -37,9 +37,7 @@ const router = createRouter({
 
 const app = createApp(App);
 
-components.forEach(component => {
-	app.component(component.name, component);
-});
+app.use(componentsPlugin);
 
 // app.use(createPinia())
 app.use(router);

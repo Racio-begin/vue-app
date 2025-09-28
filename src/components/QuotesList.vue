@@ -2,6 +2,7 @@
 	<h2 style="text-align: end; margin-bottom: 20px">
 		Всего постов: {{ quotes.length }}
 	</h2>
+
 	<TransitionGroup
 		class="quotes-list"
 		tag="ul"
@@ -13,7 +14,7 @@
 			v-for="quote in quotes"
 			:quote="quote"
 			:key="quote.id"
-			@removeQuote="$emit('removeQuote', $event)"
+			@removeQuote="emit('removeQuote', $event)"
 		/>
 	</TransitionGroup>
 
@@ -25,33 +26,31 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { defineProps, defineEmits } from 'vue';
+
 import QuoteItem from '@/components/QuoteItem.vue';
 
-export default {
-	name: "QuotesList",
-	props: {
-		quotes: {
-			type: Array,
-			required: true,
-		}
+const props = defineProps({
+	quotes: {
+		type: Array,
+		required: true,
 	},
-	components: {
-		QuoteItem,
-	},
-	methods: {
-		//* Костыль для анимации flex-контейнера *//
-		beforeLeave(el) {
-			const rect = el.getBoundingClientRect(); // Более точно, чем offset (учитывает скролл)
-			const parentRect = el.parentElement.getBoundingClientRect();
-			el.style.position = 'absolute';
-			el.style.left = `${rect.left - parentRect.left}px`;
-			el.style.top = `${rect.top - parentRect.top}px`;
-			el.style.width = `${rect.width}px`;
-			el.style.height = `${rect.height}px`;
-		},
-	},
+});
+
+const emit = defineEmits(['removeQuote']);
+
+//* Костыль для анимации flex-контейнера *//
+const beforeLeave = (el) => {
+	const rect = el.getBoundingClientRect(); // Более точно, чем offset (учитывает скролл)
+	const parentRect = el.parentElement.getBoundingClientRect();
+	el.style.position = 'absolute';
+	el.style.left = `${rect.left - parentRect.left}px`;
+	el.style.top = `${rect.top - parentRect.top}px`;
+	el.style.width = `${rect.width}px`;
+	el.style.height = `${rect.height}px`;
 };
+
 </script>
 
 <style lang="scss" scoped>
@@ -88,5 +87,4 @@ export default {
 		// width: 100%;
 	}
 }
-
-//* transition-group animations *//</style>
+</style>

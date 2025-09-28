@@ -21,8 +21,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
-
 const emit = defineEmits(['update:show']);
 
 const props = defineProps({

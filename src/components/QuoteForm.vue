@@ -29,8 +29,6 @@
 
 <script setup>
 import {
-	defineProps,
-	defineEmits,
 	reactive,
 	ref,
 	nextTick,
@@ -41,10 +39,6 @@ import {
 import { REQUIRED_FIELD_ALL } from '@/constants/informMessages';
 
 const props = defineProps({
-	quotes: {
-		type: Array,
-		required: true,
-	},
 	closeDialog: {
 		type: Function,
 		required: false,

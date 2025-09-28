@@ -22,9 +22,6 @@
 
 <script setup>
 import {
-	defineProps,
-	defineEmits,
-	defineOptions,
 	ref,
 	watch,
 } from 'vue';

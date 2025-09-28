@@ -8,11 +8,16 @@
 					name="Добавить цитату"
 					@click="showDialog"
 				/>
+
+				<SelectItem
+					v-model="selectedSort"
+					:options="sortOptions"
+				/>
 			</div>
 
 			<div class="home__quotes">
 				<QuotesList
-					:quotes="quotes"
+					:quotes="sortedQuotes"
 					@removeQuote="removeQuote"
 					v-if="!isQuotesLoading"
 				/>
@@ -28,20 +33,18 @@
 				</div>
 			</div>
 
-
-			<MyDialog v-model:show="isDialogVisible">
+			<DialogItem v-model:show="isDialogVisible">
 				<QuoteForm
-					:quotes="quotes"
 					@addQuote="addQuote"
 					:closeDialog="closeDialog"
 				/>
-			</MyDialog>
+			</DialogItem>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 
 import QuoteForm from '@/components/QuoteForm.vue';
@@ -50,6 +53,13 @@ import QuotesList from '@/components/QuotesList.vue';
 const quotes = ref([]);
 const isDialogVisible = ref(false);
 const isQuotesLoading = ref(false);
+
+const selectedSort = ref('');
+const sortOptions = [
+	{ value: 'quote', name: 'По содержимому' },
+	{ value: 'name', name: 'По автору' },
+	{ value: 'id', name: 'По id цитаты' },
+];
 
 const addQuote = (quote) => {
 	quotes.value.push(quote);
@@ -89,6 +99,15 @@ const fetchQuotes = async () => {
 	}
 };
 
+const sortedQuotes = computed(() => {
+	if (!selectedSort.value) return quotes.value;
+
+	return [...quotes.value].sort((quote1, quote2) => {
+		return quote1[selectedSort.value]?.localeCompare(quote2[selectedSort.value]);
+	});
+});
+
+
 onMounted(() => {
 	fetchQuotes();
 });
@@ -112,7 +131,8 @@ onMounted(() => {
 	&__buttons {
 		margin-bottom: 20px;
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-between;
+		gap: 20px;
 	}
 }
 

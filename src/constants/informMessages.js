@@ -2,6 +2,7 @@
 
 const LOADING_INFO = 'Загрузка информации, подождите...';
 const NOT_FOUND_INFO = 'По вашему запросу ничего не найдено';
+const REQUIRED_FIELD_ALL = 'Заполните обязательные поля, пжлст';
 
 //* Сообщения об успехе *//
 
@@ -16,12 +17,15 @@ const METHOD_NOT_ALLOWED = 'Метод не разрешён';
 
 // Почтовые
 const MIN_LENGTH_FIELD = 'Минимальное количество символов: 2';
+const MIN_LENGTH_FIELD_NAME = 'Имя должно содержать не менее 2 символов';
+const MIN_LENGTH_FIELD_PHONE = 'Номер телефона должен содержать не менее 11 цифр';
 const REQUIRED_FIELD = 'Обязательное поле';
 const INCORRECT_EMAIL = 'Некорректный адрес электронной почты';
 const INCORRECT_PHONE = 'Некорректный номер телефона';
 const MAIL_SUBMISSION_ERROR = 'Ошибка при отправке письма';
 
 export {
+	REQUIRED_FIELD_ALL,
 	LOADING_INFO,
 	MAIL_SUCCESSED,
 	LOADING_DATA_ERROR,
@@ -33,4 +37,6 @@ export {
 	INCORRECT_PHONE,
 	UNKNOWN_ERROR,
 	METHOD_NOT_ALLOWED,
+	MIN_LENGTH_FIELD_NAME,
+	MIN_LENGTH_FIELD_PHONE,
 };

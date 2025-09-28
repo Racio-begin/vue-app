@@ -65,6 +65,13 @@
 import { reactive, nextTick } from 'vue';
 import { useDebounce } from '@/composables/useDebounce';
 import { EMAIL_REGEXP } from '@/constants/regexp';
+import {
+	MIN_LENGTH_FIELD,
+	MIN_LENGTH_FIELD_NAME,
+	REQUIRED_FIELD,
+	MIN_LENGTH_FIELD_PHONE,
+	INCORRECT_EMAIL,
+} from '@/constants/informMessages';
 
 const formData = reactive({
 	name: '',
@@ -81,9 +88,9 @@ const errors = reactive({
 
 const validateName = (value) => {
 	if (!value) {
-		errors.name = 'Пожалуйста, введите имя';
+		errors.name = MIN_LENGTH_FIELD;
 	} else if (value.length < 2) {
-		errors.name = 'Имя должно содержать не менее 2 символов';
+		errors.name = MIN_LENGTH_FIELD_NAME;
 	} else {
 		errors.name = '';
 	}
@@ -91,9 +98,9 @@ const validateName = (value) => {
 
 const validatePhone = (value) => {
 	if (!value) {
-		errors.phone = 'Пожалуйста, введите номер телефона';
+		errors.phone = REQUIRED_FIELD;
 	} else if (value.length < 11) {
-		errors.phone = 'Номер телефона должен содержать не менее 11 цифр';
+		errors.phone = MIN_LENGTH_FIELD_PHONE;
 	} else {
 		errors.phone = '';
 	}
@@ -103,9 +110,9 @@ const validateEmail = (value) => {
 	const emailRegex = EMAIL_REGEXP;
 
 	if (!value) {
-		errors.email = 'Пожалуйста, введите email';
+		errors.email = REQUIRED_FIELD;
 	} else if (!emailRegex.test(value)) {
-		errors.email = 'Некорректный формат email';
+		errors.email = INCORRECT_EMAIL;
 	} else {
 		errors.email = '';
 	}
@@ -113,13 +120,13 @@ const validateEmail = (value) => {
 
 const debouncedValidateName = useDebounce(validateName, 300);
 const debouncedValidatePhone = useDebounce(validatePhone, 300);
-const debouncedValidateEmail = useDebounce(validateEmail, 300);
+const debouncedValidateEmail = useDebounce(validatePhone, 300);
 
 const onSubmit = () => {
 	console.log('Данные формы:', formData);
 
 	if (!formData.name || !formData.phone || !formData.email) {
-		alert('Заполните обязательные поля, пжлст');
+		alert(REQUIRED_FIELD_ALL);
 		return;
 	};
 

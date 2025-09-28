@@ -91,7 +91,6 @@ const onAccept = (event) => {
 	}
 };
 
-// Эмуляция watch для modelValue
 watch(
 	() => props.modelValue,
 	(newValue) => {

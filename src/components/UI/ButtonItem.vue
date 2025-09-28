@@ -92,14 +92,12 @@ $themes: (
 		}
 	}
 
-	// Неактивное состояние
 	&_disabled {
 		opacity: 0.65;
 		cursor: not-allowed;
 		pointer-events: none;
 	}
 
-	// Состояние загрузки
 	&_loading {
 		pointer-events: none;
 		position: relative;

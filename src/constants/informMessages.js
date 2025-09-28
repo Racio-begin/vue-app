@@ -3,6 +3,7 @@
 const LOADING_INFO = 'Загрузка информации, подождите...';
 const NOT_FOUND_INFO = 'По вашему запросу ничего не найдено';
 const REQUIRED_FIELD_ALL = 'Заполните обязательные поля, пжлст';
+const EMPTY_FIELD = '';
 
 //* Сообщения об успехе *//
 
@@ -26,6 +27,7 @@ const MAIL_SUBMISSION_ERROR = 'Ошибка при отправке письма
 
 export {
 	REQUIRED_FIELD_ALL,
+	EMPTY_FIELD,
 	LOADING_INFO,
 	MAIL_SUCCESSED,
 	LOADING_DATA_ERROR,

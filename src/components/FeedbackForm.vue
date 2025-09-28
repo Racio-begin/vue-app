@@ -69,8 +69,10 @@ import {
 	MIN_LENGTH_FIELD,
 	MIN_LENGTH_FIELD_NAME,
 	REQUIRED_FIELD,
+	REQUIRED_FIELD_ALL,
 	MIN_LENGTH_FIELD_PHONE,
 	INCORRECT_EMAIL,
+	EMPTY_FIELD,
 } from '@/constants/informMessages';
 
 const formData = reactive({
@@ -88,21 +90,21 @@ const errors = reactive({
 
 const validateName = (value) => {
 	if (!value) {
-		errors.name = MIN_LENGTH_FIELD;
+		errors.name = REQUIRED_FIELD;
 	} else if (value.length < 2) {
 		errors.name = MIN_LENGTH_FIELD_NAME;
 	} else {
-		errors.name = '';
+		errors.name = EMPTY_FIELD;
 	}
 };
 
 const validatePhone = (value) => {
-	if (!value) {
+	if (value.length <= 1) {
 		errors.phone = REQUIRED_FIELD;
 	} else if (value.length < 11) {
 		errors.phone = MIN_LENGTH_FIELD_PHONE;
 	} else {
-		errors.phone = '';
+		errors.phone = EMPTY_FIELD;
 	}
 };
 
@@ -114,13 +116,13 @@ const validateEmail = (value) => {
 	} else if (!emailRegex.test(value)) {
 		errors.email = INCORRECT_EMAIL;
 	} else {
-		errors.email = '';
+		errors.email = EMPTY_FIELD;
 	}
 };
 
 const debouncedValidateName = useDebounce(validateName, 300);
 const debouncedValidatePhone = useDebounce(validatePhone, 300);
-const debouncedValidateEmail = useDebounce(validatePhone, 300);
+const debouncedValidateEmail = useDebounce(validateEmail, 300);
 
 const onSubmit = () => {
 	console.log('Данные формы:', formData);

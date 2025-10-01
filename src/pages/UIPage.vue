@@ -189,11 +189,7 @@
 	</div>
 </template>
 
-<script>
-export default {
-	name: "UIPage"
-};
-</script>
+<script setup></script>
 
 <style scoped lang="scss">
 .ui {

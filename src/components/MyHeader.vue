@@ -4,15 +4,8 @@
 	</header>
 </template>
 
-<script>
+<script setup>
 import NavBar from '@/components/NavBar.vue';
-
-export default {
-	name: "MyHeader",
-	components: {
-		NavBar,
-	}
-};
 </script>
 
 <style scoped lang="scss">

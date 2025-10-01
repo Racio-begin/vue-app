@@ -12,40 +12,38 @@
 	</textarea>
 </template>
 
-<script>
-export default {
-	name: "TextareaItem",
-	props: {
-		modelValue: [
-			String,
-			Number,
-		],
-		name: {
-			type: String,
-			required: true,
-		},
-		inputPlaceholder: {
-			type: String,
-			required: true,
-		},
-		rows: {
-			type: Number,
-			default: 4,
-		},
-		cols: {
-			type: Number,
-			default: 50,
-		},
-		required: {
-			type: Boolean,
-			default: false,
-		}
+<script setup>
+const props = defineProps({
+	modelValue: [
+		String,
+		Number,
+	],
+	name: {
+		type: String,
+		required: true,
 	},
-	methods: {
-		updateInput(event) {
-			this.$emit('update:modelValue', event.target.value);
-		},
+	inputPlaceholder: {
+		type: String,
+		required: true,
 	},
+	rows: {
+		type: Number,
+		default: 4,
+	},
+	cols: {
+		type: Number,
+		default: 50,
+	},
+	required: {
+		type: Boolean,
+		default: false,
+	}
+});
+
+const emit = defineEmits(['update:modelValue']);
+
+const updateInput = (event) => {
+	emit('update:modelValue', event.target.value);
 };
 </script>
 

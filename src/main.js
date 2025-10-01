@@ -1,12 +1,12 @@
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import { createRouter, createWebHistory } from 'vue-router';
 
-import componentsPlugin from '@/plugins/components';
 import App from '@/App.vue';
 
-import '@/assets/styles/main.scss';
+import componentsPlugin from '@/plugins/components';
 
-// import { createPinia } from 'pinia'
+import '@/assets/styles/main.scss';
 
 const router = createRouter({
 	routes: [
@@ -37,9 +37,8 @@ const router = createRouter({
 
 const app = createApp(App);
 
-app.use(componentsPlugin);
-
-// app.use(createPinia())
+app.use(createPinia());
 app.use(router);
+app.use(componentsPlugin);
 
 app.mount('#app');

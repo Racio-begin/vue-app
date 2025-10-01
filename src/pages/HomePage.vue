@@ -10,16 +10,17 @@
 				/>
 
 				<SelectItem
-					v-model="selectedSort"
-					:options="sortOptions"
+					:modelValue="quotesStore.selectedSort"
+					@update:modelValue="quotesStore.setSelectedSort"
+					:options="quotesStore.sortOptions"
 				/>
 			</div>
 
 			<div class="home__quotes">
 				<QuotesList
-					:quotes="sortedQuotes"
-					@removeQuote="removeQuote"
-					v-if="!isQuotesLoading"
+					:quotes="quotesStore.sortedQuotes"
+					@removeQuote="quotesStore.removeQuote"
+					v-if="!quotesStore.isQuotesLoading"
 				/>
 
 				<div
@@ -35,7 +36,7 @@
 
 			<DialogItem v-model:show="isDialogVisible">
 				<QuoteForm
-					@addQuote="addQuote"
+					@addQuote="quotesStore.addQuote"
 					:closeDialog="closeDialog"
 				/>
 			</DialogItem>
@@ -44,30 +45,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
-import axios from 'axios';
+import { ref, onMounted } from 'vue';
+import { useQuotesStore } from '@/stores/QuotesStore';
 
 import QuoteForm from '@/components/QuoteForm.vue';
 import QuotesList from '@/components/QuotesList.vue';
 
-const quotes = ref([]);
+const quotesStore = useQuotesStore();
+
 const isDialogVisible = ref(false);
-const isQuotesLoading = ref(false);
-
-const selectedSort = ref('');
-const sortOptions = [
-	{ value: 'quote', name: 'По содержимому' },
-	{ value: 'name', name: 'По автору' },
-	{ value: 'id', name: 'По id цитаты' },
-];
-
-const addQuote = (quote) => {
-	quotes.value.push(quote);
-};
-
-const removeQuote = (quoteId) => {
-	quotes.value = quotes.value.filter(q => q.id !== quoteId);
-};
 
 const showDialog = () => {
 	isDialogVisible.value = true;
@@ -77,39 +63,8 @@ const closeDialog = () => {
 	isDialogVisible.value = false;
 };
 
-const fetchQuotes = async () => {
-	try {
-		isQuotesLoading.value = true;
-
-		const response = await axios.get('https://687b9947b4bc7cfbda867045.mockapi.io/quotes', {
-			params: {
-				limit: 10,
-				page: 1,
-			},
-			headers: {
-				'content-type': 'application/json',
-			}
-		});
-
-		quotes.value = response.data;
-	} catch (error) {
-		alert(error.message);
-	} finally {
-		isQuotesLoading.value = false;
-	}
-};
-
-const sortedQuotes = computed(() => {
-	if (!selectedSort.value) return quotes.value;
-
-	return [...quotes.value].sort((quote1, quote2) => {
-		return quote1[selectedSort.value]?.localeCompare(quote2[selectedSort.value]);
-	});
-});
-
-
 onMounted(() => {
-	fetchQuotes();
+	quotesStore.fetchQuotes();
 });
 </script>
 

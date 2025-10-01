@@ -10,15 +10,8 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 import FeedbackForm from '@/components/FeedbackForm.vue';
-
-export default {
-	name: "AboutMe",
-	components: {
-		FeedbackForm,
-	},
-};
 </script>
 
 <style scoped lang="scss">

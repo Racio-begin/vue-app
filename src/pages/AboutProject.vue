@@ -77,11 +77,7 @@
 	</div>
 </template>
 
-<script>
-export default {
-	name: "AboutProject"
-};
-</script>
+<script setup></script>
 
 <style scoped lang="scss">
 .about-project {

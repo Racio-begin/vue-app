@@ -4,12 +4,7 @@
 	</footer>
 </template>
 
-<script>
-
-export default {
-	name: "MyFooter",
-};
-</script>
+<script setup></script>
 
 <style scoped lang="scss">
 @use "@/assets/styles/vars" as *;

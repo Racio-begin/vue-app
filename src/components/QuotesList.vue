@@ -82,7 +82,6 @@ const beforeLeave = (el) => {
 
 	&-leave-active {
 		position: absolute;
-		// width: 100%;
 	}
 }
 </style>

@@ -10,7 +10,7 @@
 			disabled
 			value=""
 		>
-			Выберите
+			Сортировать
 		</option>
 		<option
 			v-for="option in options"

@@ -8,10 +8,12 @@
 		"build": "vite build --mode production",
 		"preview": "vite preview",
 		"test:unit": "vitest",
+		"test:ci": "vitest run --coverage",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
+		"@vitest/coverage-v8": "^3.2.4",
 		"axios": "^1.10.0",
 		"lodash": "^4.17.21",
 		"pinia": "^3.0.3",

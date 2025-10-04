@@ -16,6 +16,10 @@ const router = createRouter({
 			// Ленивая загрузка
 		},
 		{
+			path: '/favorites',
+			component: () => import('@/pages/FavoritesPage.vue'),
+		},
+		{
 			path: '/about-me',
 			component: () => import('@/pages/AboutMe.vue'),
 		},

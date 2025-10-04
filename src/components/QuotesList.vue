@@ -1,8 +1,4 @@
 <template>
-	<h2 style="text-align: end; margin-bottom: 20px">
-		Всего постов: {{ quotes.length }}
-	</h2>
-
 	<TransitionGroup
 		class="quotes-list"
 		tag="ul"
@@ -14,7 +10,6 @@
 			v-for="quote in quotes"
 			:quote="quote"
 			:key="quote.id"
-			@removeQuote="emit('removeQuote', $event)"
 		/>
 	</TransitionGroup>
 
@@ -36,7 +31,7 @@ const props = defineProps({
 	},
 });
 
-const emit = defineEmits(['removeQuote']);
+// const emit = defineEmits(['removeQuote']);
 
 //* Костыль для анимации flex-контейнера *//
 const beforeLeave = (el) => {
@@ -48,7 +43,6 @@ const beforeLeave = (el) => {
 	el.style.width = `${rect.width}px`;
 	el.style.height = `${rect.height}px`;
 };
-
 </script>
 
 <style lang="scss" scoped>

@@ -3,6 +3,7 @@ import InputItem from "@/components/UI/InputItem.vue";
 import TextareaItem from "@/components/UI/TextareaItem.vue";
 import DialogItem from "@/components/UI/DialogItem.vue";
 import SelectItem from "@/components/UI/SelectItem.vue";
+import LoaderItem from "@/components/UI/LoaderItem.vue";
 
 export default {
 	// Регистрация часто используемых компонентов //
@@ -12,5 +13,6 @@ export default {
 		app.component('TextareaItem', TextareaItem);
 		app.component('DialogItem', DialogItem);
 		app.component('SelectItem', SelectItem);
+		app.component('LoaderItem', LoaderItem);
 	}
 };

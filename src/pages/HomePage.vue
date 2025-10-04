@@ -16,22 +16,26 @@
 				/>
 			</div>
 
+			<div class="home__stats">
+				<p>Всего цитат: {{ quotesStore.quotesCount }}</p>
+				<p>Цитат в избранном: {{ quotesStore.favoritesCount }}</p>
+
+				<ButtonItem
+					name="Обновить"
+					theme="secondary"
+					@click="quotesStore.forceRefreshQuotes"
+					:loading="quotesStore.isLoading"
+					:disabled="quotesStore.isLoading"
+				/>
+			</div>
+
 			<div class="home__quotes">
 				<QuotesList
 					:quotes="quotesStore.sortedQuotes"
-					@removeQuote="quotesStore.removeQuote"
-					v-if="!quotesStore.isQuotesLoading"
+					v-if="!quotesStore.isLoading"
 				/>
 
-				<div
-					class="loading"
-					v-else
-				>
-					<div class="loading__inner">
-						<span class="loading__text">Загрузка цитат</span>
-						<span class="loading__dots"></span>
-					</div>
-				</div>
+				<LoaderItem v-else />
 			</div>
 
 			<DialogItem v-model:show="isDialogVisible">
@@ -69,6 +73,8 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/vars" as *;
+
 .home {
 	display: flex;
 	flex-direction: column;
@@ -89,49 +95,19 @@ onMounted(() => {
 		justify-content: space-between;
 		gap: 20px;
 	}
-}
 
-.loading {
-	display: flex;
-	justify-content: center;
+	&__stats {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+		margin-bottom: 20px;
 
-	&__inner {
-		padding-right: 20px;
-		position: relative;
-	}
-
-	&__dots {
-		width: 20px;
-		position: absolute;
-		right: 0;
-		bottom: 0;
-
-		&::after {
-			content: "";
-			animation: loading-text 1s infinite;
+		p {
+			background: $color-grey;
+			padding: 8px 16px;
+			border-radius: 8px;
+			font-weight: 500;
 		}
-	}
-}
-
-@keyframes loading-text {
-	0% {
-		content: "";
-	}
-
-	25% {
-		content: ".";
-	}
-
-	50% {
-		content: "..";
-	}
-
-	75% {
-		content: "...";
-	}
-
-	100% {
-		content: "";
 	}
 }
 </style>

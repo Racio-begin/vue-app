@@ -11,15 +11,20 @@
 
 		<div class="quote__buttons">
 			<ButtonItem
-				name="Удалить"
-				theme="danger"
-				@click="removeQuote"
+				:name="isQuoteFavorite ? 'Убрать из избранного' : 'В избранное'"
+				:theme="isQuoteFavorite ? 'secondary' : 'success'"
+				@click="toggleFavorite"
 			/>
 		</div>
 	</li>
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useQuotesStore } from '@/stores/QuotesStore';
+
+const quotesStore = useQuotesStore();
+
 const props = defineProps({
 	quote: {
 		type: Object,
@@ -27,10 +32,10 @@ const props = defineProps({
 	},
 });
 
-const emit = defineEmits(['removeQuote']);
+const isQuoteFavorite = computed(() => quotesStore.isFavorite(props.quote.id));
 
-const removeQuote = () => {
-	emit('removeQuote', props.quote.id);
+const toggleFavorite = () => {
+	quotesStore.toggleFavorite(props.quote);
 };
 </script>
 
@@ -77,6 +82,7 @@ const removeQuote = () => {
 		justify-content: end;
 		align-items: flex-end;
 		gap: 10px;
+		flex-wrap: wrap;
 	}
 }
 </style>

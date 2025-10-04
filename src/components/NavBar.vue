@@ -20,6 +20,7 @@ const router = useRouter();
 
 const navLinks = [
 	{ to: '/', name: 'Главная' },
+	{ to: '/favorites', name: 'Избранное' },
 	{ to: '/about-project', name: 'Проект' },
 	{ to: '/about-me', name: 'Обо мне' },
 	{ to: '/ui', name: 'UI' },

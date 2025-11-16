@@ -32,6 +32,10 @@ const router = createRouter({
 			component: () => import('@/pages/UIPage.vue'),
 		},
 		{
+			path: '/sandbox',
+			component: () => import('@/pages/SandboxPage.vue'),
+		},
+		{
 			path: '/:pathMatch(.*)*',
 			component: () => import('@/pages/NotFound.vue'),
 		},

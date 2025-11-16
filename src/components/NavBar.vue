@@ -24,6 +24,7 @@ const navLinks = [
 	{ to: '/about-project', name: 'Проект' },
 	{ to: '/about-me', name: 'Обо мне' },
 	{ to: '/ui', name: 'UI' },
+	{ to: '/sandbox', name: 'Песочница' },
 ];
 
 const changeRoute = (path) => {

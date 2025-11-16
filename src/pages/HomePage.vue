@@ -29,6 +29,8 @@
 				/>
 			</div>
 
+			<!-- <YandexForm /> -->
+
 			<div class="home__quotes">
 				<QuotesList
 					:quotes="quotesStore.sortedQuotes"
@@ -54,6 +56,7 @@ import { useQuotesStore } from '@/stores/QuotesStore';
 
 import QuoteForm from '@/components/QuoteForm.vue';
 import QuotesList from '@/components/QuotesList.vue';
+import YandexForm from '@/components/forms/YandexForm.vue';
 
 const quotesStore = useQuotesStore();
 

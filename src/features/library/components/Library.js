@@ -1,4 +1,4 @@
-import { Book as BookModel } from "./Book";
+import BookModel from "./Book";
 
 class Library {
 	constructor() {

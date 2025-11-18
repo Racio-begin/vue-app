@@ -3,14 +3,14 @@
 		<div class="container">
 
 			<button @click="showInfoBook">
-				Покажи инфо о книге
+				Покажи информацию о книге
 			</button>
 			<p>{{ boonInfo }}</p>
 
 			<button @click="addNewBook">
 				Добаь новую книгу
 			</button>
-			<p>{{ library.books }}</p>
+			<p>Количество книг в библиотеке: {{ library.books.length }}</p>
 		</div>
 	</div>
 </template>

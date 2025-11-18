@@ -1,4 +1,4 @@
-import Book from "./Book";
+import { Book as BookModel } from "./Book";
 
 class Library {
 	constructor() {
@@ -6,7 +6,7 @@ class Library {
 	};
 
 	addBook(bookData) {
-		const book = new Book(bookData);
+		const book = new BookModel(bookData);
 		this.books.push(book);
 		return book;
 	};
@@ -28,7 +28,7 @@ class Library {
 	async addBookAsync(bookData) {
 		console.log("⏳ Начинаем загрузку книги...");
 
-		const dataBook = await this.fetchBookData(bookData);
+		const dataBook = await this.fetchBookData(bookData, 1500);
 		const book = this.addBook(dataBook);
 
 		return book;

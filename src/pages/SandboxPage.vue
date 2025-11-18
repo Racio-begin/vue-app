@@ -10,7 +10,7 @@
 			<button @click="addNewBook">
 				Добаь новую книгу
 			</button>
-			<p>{{ boonInfo }}</p>
+			<p>{{ library.books }}</p>
 		</div>
 	</div>
 </template>

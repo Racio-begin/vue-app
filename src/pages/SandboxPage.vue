@@ -6,13 +6,19 @@
 				Покажи инфо о книге
 			</button>
 			<p>{{ boonInfo }}</p>
+
+			<button @click="addNewBook">
+				Добаь новую книгу
+			</button>
+			<p>{{ boonInfo }}</p>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import Book from "@/features/library/components/Book";
+import Library from "@/features/library/components/Library";
 
 const book = new Book({
 	title: "Скотный двор",
@@ -22,9 +28,20 @@ const book = new Book({
 });
 
 const boonInfo = ref('');
+const library = reactive(new Library());
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
+};
+
+const addNewBook = async () => {
+	try {
+		await library.addBookAsync(book);
+	} catch (error) {
+		console.log("Ошибка", error);
+	} finally {
+		console.log("Так или иначе, процесс добавления книги завершен");
+	}
 };
 </script>
 

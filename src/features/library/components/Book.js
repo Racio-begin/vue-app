@@ -14,7 +14,7 @@ class Book {
 	}
 
 	getInfo() {
-		const info = `"${this.title}" by ${this.author}, (${this.year})`;
+		const info = `Книга "${this.title}", автор ${this.author} (${this.year})`;
 		console.log("info :", info);
 
 		return info;

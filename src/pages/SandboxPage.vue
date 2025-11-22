@@ -1,16 +1,76 @@
 <template>
 	<div class="sandbox">
 		<div class="container">
+			<h1 class="sandbox__title">Песочница</h1>
 
-			<button @click="showInfoBook">
-				Покажи информацию о книге
-			</button>
-			<p>{{ boonInfo }}</p>
+			<div class="sandbox__sections">
+				<section class="sandbox__section">
+					<h2 class="sandbox__section-title">Классы</h2>
+					<ButtonItem
+						name="Покажи информацию о книге"
+						@click="showInfoBook"
+					/>
+					<p>{{ boonInfo }}</p>
 
-			<button @click="addNewBook">
-				Добаь новую книгу
-			</button>
-			<p>Количество книг в библиотеке: {{ library.books.length }}</p>
+					<ButtonItem
+						name="Добавить книгу в библиотеку"
+						@click="addNewBook"
+					/>
+					<p>Количество книг в библиотеке: {{ library.books.length }}</p>
+				</section>
+
+				<section class="sandbox__section section">
+					<h2>Методы массивов</h2>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Превратить строку в массив"
+							@click="stringToArrayFrom(testString)"
+						/>
+						<div class="section__row">
+							<p>Строка: {{ testString }}</p>
+							<p>Массив через ArrayFrom: {{ resultArrayFrom }}</p>
+						</div>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Превратить строку в массив"
+							@click="stringToArrayOf(testString)"
+						/>
+						<div class="section__row">
+							<p>Строка: {{ testString }}</p>
+							<p>Массив через ArrayOF: {{ resultArrayOf }}</p>
+						</div>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Найти первое совпадение в массиве"
+							@click="findFirstMatchInArray(numbersArray)"
+						/>
+						<div class="section__row">
+							<p>Массив чисел: {{ numbersArray }}</p>
+							<p>Итоговые значения послу метода find: {{ resultArrayFind }}</p>
+						</div>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Найти индекс первого совпадающего элемента"
+							@click="findIndexArray(numbersArray)"
+						/>
+						<div class="section__row">
+							<p>Массив чисел: {{ numbersArray }}</p>
+							<p>Итоговые значения послу метода find:
+								{{ resultArrayFindIndex }}
+							</p>
+						</div>
+					</div>
+
+				</section>
+			</div>
+
 		</div>
 	</div>
 </template>
@@ -20,15 +80,24 @@ import { ref, reactive } from 'vue';
 import Book from "@/features/library/components/Book";
 import Library from "@/features/library/components/Library";
 
+// Константы //
+import { numbersArray } from '@/constants/arrays';
+import { testString } from '@/constants/strings';
+
 const book = new Book({
 	title: "Скотный двор",
-	author: "Оруэлл",
+	author: "Дж. Оруэлл",
 	year: 1984,
 	isRead: false
 });
 
 const boonInfo = ref('');
 const library = reactive(new Library());
+
+const resultArrayFrom = ref([]);
+const resultArrayOf = ref([]);
+const resultArrayFind = ref([]);
+const resultArrayFindIndex = ref([]);
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -43,6 +112,131 @@ const addNewBook = async () => {
 		console.log("Так или иначе, процесс добавления книги завершен");
 	}
 };
+
+// Методы для работы с массивами //
+
+const stringToArrayFrom = (string) => {
+	resultArrayFrom.value = [];
+
+	resultArrayFrom.value = Array.from(string);
+	console.log(resultArrayFrom);
+
+	return resultArrayFrom;
+};
+
+const stringToArrayOf = (string) => {
+	resultArrayOf.value = [];
+
+	resultArrayOf.value = Array.of(string);
+	console.log(resultArrayOf);
+
+	return resultArrayOf;
+};
+
+const findFirstMatchInArray = (array) => {
+	resultArrayFind.value = [];
+
+	const findMoreThan1 = `Больше 1: ${array.find(num => num > 1)}`;
+	const findMoreThan10 = `Больше 10: ${array.find(num => num > 10)}`;
+	const findMoreThan100 = `Больше 100: ${array.find(num => num > 100)}`;
+	const findMoreThan1000 = `Больше 1000: ${array.find(num => num > 1000)}`;
+	const findMoreThan1000000 = `Больше 1000000: ${array.find(num => num > 1000000)}`;
+
+	const findLessThan1 = `Меньше 1: ${array.find(num => num < 1)}`;
+	const findLessThan10 = `Меньше 10: ${array.find(num => num < 10)}`;
+	const findLessThan100 = `Меньше 100: ${array.find(num => num < 100)}`;
+	const findLessThan1000 = `Меньше 1000: ${array.find(num => num < 10)}`;
+	const findLessThan1000000 = `Меньше 1000000: ${array.find(num => num < 1000000)}`;
+
+	const findEqualTo88888 = `Равно 88888: ${array.find(num => num === 88888)}`;
+
+	resultArrayFind.value = [
+		findMoreThan1,
+		findMoreThan10,
+		findMoreThan100,
+		findMoreThan1000,
+		findMoreThan1000000,
+		findLessThan1,
+		findLessThan10,
+		findLessThan100,
+		findLessThan1000,
+		findLessThan1000000,
+		findEqualTo88888,
+	];
+	console.log(resultArrayFind);
+
+	return resultArrayFind;
+};
+
+const findIndexArray = (array) => {
+	resultArrayFindIndex.value = [];
+
+	const findMoreThan1 = `Больше 1: ${array.findIndex(num => num > 1)}`;
+	const findMoreThan10 = `Больше 10: ${array.findIndex(num => num > 10)}`;
+	const findMoreThan100 = `Больше 100: ${array.findIndex(num => num > 100)}`;
+	const findMoreThan1000 = `Больше 1000: ${array.findIndex(num => num > 1000)}`;
+	const findMoreThan100000 = `Больше 100000: ${array.findIndex(num => num > 100000)}`;
+	const findMoreThan1000000 = `Больше 1000000: ${array.findIndex(num => num > 1000000)}`;
+
+	resultArrayFindIndex.value = [
+		findMoreThan1,
+		findMoreThan10,
+		findMoreThan100,
+		findMoreThan1000,
+		findMoreThan100000,
+		findMoreThan1000000,
+	];
+
+	console.log(resultArrayFindIndex);
+};
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.sandbox {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	&__title {
+		margin: 0 auto 20px;
+		text-align: center;
+	}
+
+	&__sections {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		row-gap: 50px;
+	}
+
+	&__section {
+		width: 50%;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		row-gap: 20px;
+	}
+
+	&__section-title {
+		text-align: center;
+	}
+}
+
+.section {
+	&__item {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		row-gap: 20px;
+	}
+
+	&__row {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		column-gap: 20px;
+	}
+}
+</style>

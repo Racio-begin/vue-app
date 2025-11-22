@@ -83,12 +83,24 @@
 
 					<div class="section__item">
 						<ButtonItem
+							name="Скопировать посление два элемента в начало"
+							@click="arrayCopyWithin(stringsArray)"
+						/>
+						<div class="section__row">
+							<p>Массив строк: {{ stringsArray }}</p>
+							<p>Итоговые значения после метода copyWithin:
+								{{ resultArrayCopyWithin }}
+							</p>
+						</div>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
 							name="Очистить все итоговые массивы"
 							theme="secondary"
 							@click="clearArrays()"
 						/>
 					</div>
-
 				</section>
 			</div>
 
@@ -120,6 +132,7 @@ const resultArrayOf = ref([]);
 const resultArrayFind = ref([]);
 const resultArrayFindIndex = ref([]);
 const resultArrayToFill = ref([]);
+const resultArrayCopyWithin = ref([]);
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -226,6 +239,20 @@ const arrayToFill = (array) => {
 	console.log(resultArrayToFill);
 
 	return resultArrayToFill;
+};
+
+const arrayCopyWithin = (array) => {
+	resultArrayCopyWithin.value = [];
+
+	const results = [];
+
+	results.push(`Скопировал конец в начало: ${[...array].copyWithin(0, length - 2)}`);
+
+	resultArrayCopyWithin.value = results;
+
+	console.log(resultArrayCopyWithin);
+
+	return resultArrayCopyWithin;
 };
 
 const clearArrays = () => {

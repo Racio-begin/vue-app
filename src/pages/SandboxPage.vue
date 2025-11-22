@@ -68,6 +68,27 @@
 						</div>
 					</div>
 
+					<div class="section__item">
+						<ButtonItem
+							name="Добавить статичные данные в массив"
+							@click="arrayToFill(stringsArray)"
+						/>
+						<div class="section__row">
+							<p>Массив строк: {{ stringsArray }}</p>
+							<p>Итоговые значения после метода find:
+								{{ resultArrayToFill }}
+							</p>
+						</div>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Очистить все итоговые массивы"
+							theme="secondary"
+							@click="clearArrays()"
+						/>
+					</div>
+
 				</section>
 			</div>
 
@@ -81,7 +102,7 @@ import Book from "@/features/library/components/Book";
 import Library from "@/features/library/components/Library";
 
 // Константы //
-import { numbersArray } from '@/constants/arrays';
+import { numbersArray, stringsArray } from '@/constants/arrays';
 import { testString } from '@/constants/strings';
 
 const book = new Book({
@@ -98,6 +119,7 @@ const resultArrayFrom = ref([]);
 const resultArrayOf = ref([]);
 const resultArrayFind = ref([]);
 const resultArrayFindIndex = ref([]);
+const resultArrayToFill = ref([]);
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -114,7 +136,6 @@ const addNewBook = async () => {
 };
 
 // Методы для работы с массивами //
-
 const stringToArrayFrom = (string) => {
 	resultArrayFrom.value = [];
 
@@ -189,9 +210,36 @@ const findIndexArray = (array) => {
 
 	console.log(resultArrayFindIndex);
 };
+
+const arrayToFill = (array) => {
+	resultArrayToFill.value = [];
+
+	const results = [];
+
+	results.push(`М-ки от 0 до 2: ${[...array].fill("M-16", 0, 2)}`);
+	results.push(`Все нули, с первого и до конца: ${[...array].fill(0, 0)}`);
+	results.push(`Все единицы: ${[...array].fill(1)}`);
+	results.push(`Все звёздочки: ${[...array].fill("*")}`);
+
+	resultArrayToFill.value = results;
+
+	console.log(resultArrayToFill);
+
+	return resultArrayToFill;
+};
+
+const clearArrays = () => {
+	resultArrayFrom.value = [];
+	resultArrayOf.value = [];
+	resultArrayFind.value = [];
+	resultArrayFindIndex.value = [];
+	resultArrayToFill.value = [];
+};
 </script>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/vars" as *;
+
 .sandbox {
 	display: flex;
 	flex-direction: column;
@@ -217,6 +265,9 @@ const findIndexArray = (array) => {
 		flex-direction: column;
 		justify-content: center;
 		row-gap: 20px;
+
+		border: 1px solid $color-primary;
+		border-radius: 20px;
 	}
 
 	&__section-title {

@@ -96,6 +96,27 @@
 
 					<div class="section__item">
 						<ButtonItem
+							name="Проработать массив через итераторы"
+							@click="arrayIterators(stringsArray)"
+						/>
+						<div class="section__row">
+							<p>Массив строк: {{ stringsArray }}</p>
+							<p>Итоговые значения после метода entries:
+								{{ resultArrayEntries }}
+							</p>
+							<p>Итоговые значения после метода keys:
+								{{ resultArrayKeys }}
+							</p>
+							<p>Итоговые значения после метода values:
+								{{ resultArrayValues }}
+							</p>
+						</div>
+					</div>
+
+
+
+					<div class="section__item">
+						<ButtonItem
 							name="Очистить все итоговые массивы"
 							theme="secondary"
 							@click="clearArrays()"
@@ -133,6 +154,9 @@ const resultArrayFind = ref([]);
 const resultArrayFindIndex = ref([]);
 const resultArrayToFill = ref([]);
 const resultArrayCopyWithin = ref([]);
+const resultArrayEntries = ref([]);
+const resultArrayKeys = ref([]);
+const resultArrayValues = ref([]);
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -253,6 +277,38 @@ const arrayCopyWithin = (array) => {
 	console.log(resultArrayCopyWithin);
 
 	return resultArrayCopyWithin;
+};
+
+const arrayIterators = (array) => {
+	resultArrayEntries.value = [];
+	resultArrayKeys.value = [];
+	resultArrayValues.value = [];
+
+	const resultsEntries = [];
+	const resultsKeys = [];
+	const resultsValues = [];
+
+	for (const [index, element] of [...array].entries()) {
+		resultsEntries.push(`Ключ и значение: ${index}: ${element}`);
+	}
+
+	for (const key of [...array].keys()) {
+		resultsKeys.push(`Ключ: ${key}`);
+	}
+
+	for (const value of [...array].values()) {
+		resultsValues.push(`Значение: ${value}`);
+	}
+
+	resultArrayEntries.value = resultsEntries;
+	resultArrayKeys.value = resultsKeys;
+	resultArrayValues.value = resultsValues;
+
+	console.log(resultArrayEntries);
+	console.log(resultArrayKeys);
+	console.log(resultArrayValues);
+
+	return resultArrayEntries, resultArrayKeys, resultArrayValues;
 };
 
 const clearArrays = () => {

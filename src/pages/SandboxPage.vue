@@ -137,6 +137,16 @@
 
 					<div class="section__item">
 						<ButtonItem
+							name="Проверяем объекты, одинакоые ли они"
+							@click="objectIs(russianWeapons, popularWeapons)"
+						/>
+						<p>Исходный объект: {{ russianWeapons }}</p>
+						<p>Целевой объект: {{ popularWeapons }}</p>
+						<p>Результат проверки ссылки на объект: {{ resultObjectIs }}</p>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
 							name="Очистить все итоговые объекты"
 							theme="secondary"
 							@click="clearObjects()"
@@ -179,6 +189,8 @@ const resultArrayKeys = ref([]);
 const resultArrayValues = ref([]);
 
 const resultObjectAssign = ref({});
+const resultObjectIs = ref('');
+const resultObjectIsEqual = ref('');
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -356,6 +368,20 @@ const objectAssign = (target, source) => {
 	console.log(resultObjectAssign);
 
 	return resultObjectAssign;
+};
+
+const objectIs = (targetObject, sourceObject) => {
+	resultObjectIs.value = false;
+
+	const isEqual = Object.is(targetObject, sourceObject);
+
+	if (isEqual) {
+		resultObjectIs.value = `Объекты равны, ${true}`;
+		console.log("Объекты равны", resultObjectAssign);
+	} else {
+		resultObjectIs.value = `Объекты не равны, ${false}`;
+		console.log("Объекты не равны", resultObjectAssign);
+	}
 };
 
 const clearObjects = () => {

@@ -193,6 +193,28 @@
 						/>
 					</div>
 				</section>
+
+				<section class="sandbox__section section">
+					<h2 class="section__title">Методы строк</h2>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Проверить строку на наличие подстроки"
+							@click="stringIncludes(longString)"
+						/>
+						<p>Строка: {{ longString }}</p>
+						<p>Результат проверки на наличие слова "ущерб": {{ resultStringIncludes }}</p>
+						<p>Результат проверки на наличие слова "добро": {{ resultStringIncludes2 }}</p>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Очистить все итоговые строки"
+							theme="secondary"
+							@click="clearStrings()"
+						/>
+					</div>
+				</section>
 			</div>
 		</div>
 	</div>
@@ -205,7 +227,7 @@ import Library from "@/features/library/components/Library";
 
 // Константы //
 import { numbersArray, stringsArray } from '@/constants/arrays';
-import { testString } from '@/constants/strings';
+import { testString, longString } from '@/constants/strings';
 import { russianWeapons, popularWeapons } from '@/constants/objects';
 import { alpha, omega } from '@/constants/symbols';
 
@@ -237,6 +259,13 @@ const resultObjectSetPrototypeOf = ref('');
 const resultObjectGetOwnPropertySymbols = ref([]);
 const resultObjectValues = ref([]);
 const resultObjectEntries = ref([]);
+
+// Состояния у строк //
+const resultStringIncludes = ref('');
+const resultStringIncludes2 = ref('');
+const resultStartsWith = ref('');
+const resultEndsWith = ref('');
+const resultStringRepeat = ref('');
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -483,6 +512,31 @@ const clearObjects = () => {
 	resultObjectGetOwnPropertySymbols.value = [];
 	resultObjectValues.value = [];
 	resultObjectEntries.value = [];
+};
+
+// Методы для работы со строками //
+const stringIncludes = (string) => {
+	resultStringIncludes.value = false;
+	resultStringIncludes2.value = false;
+
+	const result1 = string.includes('ущерб');
+	const result2 = string.includes('добро');
+
+	resultStringIncludes.value = result1;
+	resultStringIncludes2.value = result2;
+
+	console.log(resultStringIncludes);
+	console.log(resultStringIncludes2);
+
+	return resultStringIncludes, resultStringIncludes2;
+};
+
+const clearStrings = () => {
+	resultStringIncludes.value = '';
+	resultStringIncludes2.value = '';
+	resultStartsWith.value = '';
+	resultEndsWith.value = '';
+	resultStringRepeat.value = '';
 };
 </script>
 

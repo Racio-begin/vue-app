@@ -4,23 +4,28 @@
 			<h1 class="sandbox__title">Песочница</h1>
 
 			<div class="sandbox__sections">
-				<section class="sandbox__section">
-					<h2 class="sandbox__section-title">Классы</h2>
-					<ButtonItem
-						name="Покажи информацию о книге"
-						@click="showInfoBook"
-					/>
-					<p>{{ boonInfo }}</p>
+				<section class="sandbox__section section">
+					<h2 class="section__title">Классы</h2>
 
-					<ButtonItem
-						name="Добавить книгу в библиотеку"
-						@click="addNewBook"
-					/>
-					<p>Количество книг в библиотеке: {{ library.books.length }}</p>
+					<div class="section__item">
+						<ButtonItem
+							name="Покажи информацию о книге"
+							@click="showInfoBook"
+						/>
+						<p>{{ boonInfo }}</p>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Добавить книгу в библиотеку"
+							@click="addNewBook"
+						/>
+						<p>Количество книг в библиотеке: {{ library.books.length }}</p>
+					</div>
 				</section>
 
 				<section class="sandbox__section section">
-					<h2>Методы массивов</h2>
+					<h2 class="section__title">Методы массивов</h2>
 
 					<div class="section__item">
 						<ButtonItem
@@ -123,7 +128,7 @@
 				</section>
 
 				<section class="sandbox__section section">
-					<h2>Методы объектов</h2>
+					<h2 class="section__title">Методы объектов</h2>
 
 					<div class="section__item">
 						<ButtonItem
@@ -464,15 +469,14 @@ const clearObjects = () => {
 	}
 
 	&__section {
-		width: 50%;
+		width: 60%;
 		padding: 20px;
+		border: 3px solid $color-primary;
+		border-radius: 20px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		row-gap: 20px;
-
-		border: 1px solid $color-primary;
-		border-radius: 20px;
 	}
 
 	&__section-title {
@@ -486,6 +490,25 @@ const clearObjects = () => {
 		display: flex;
 		flex-direction: column;
 		row-gap: 20px;
+
+		&:not(:last-child) {
+			&::after {
+				content: "";
+				width: 100%;
+				height: 2px;
+				background-color: $color-primary;
+			}
+		}
+	}
+
+	&__title {
+		&::after {
+			content: "";
+			width: 100%;
+			height: 2px;
+			display: block;
+			background-color: $color-primary;
+		}
 	}
 
 	&__row {

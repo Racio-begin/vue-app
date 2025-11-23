@@ -237,6 +237,20 @@
 
 					<div class="section__item">
 						<ButtonItem
+							name="Вернуть новую строку с копиями исходной строки"
+							@click="stringRepeat(testString)"
+						/>
+						<p>Строка: {{ testString }}</p>
+						<p>
+							Результат двух копий: {{ resultStringRepeat }}
+						</p>
+						<p>
+							Результат пяти копий: {{ resultStringRepeat2 }}
+						</p>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
 							name="Очистить все итоговые строки"
 							theme="secondary"
 							@click="clearStrings()"
@@ -596,6 +610,22 @@ const stringEndsWith = (string) => {
 	console.log(resultStringEndsWith2);
 
 	return resultStringEndsWith, resultStringEndsWith2;
+};
+
+const stringRepeat = (string) => {
+	resultStringRepeat.value = '';
+	resultStringRepeat2.value = '';
+
+	const result1 = string.repeat(2);
+	const result2 = string.repeat(5);
+
+	resultStringRepeat.value = result1;
+	resultStringRepeat2.value = result2;
+
+	console.log(resultStringRepeat);
+	console.log(resultStringRepeat2);
+
+	return resultStringRepeat, resultStringRepeat2;
 };
 
 const clearStrings = () => {

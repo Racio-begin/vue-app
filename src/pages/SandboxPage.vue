@@ -209,6 +209,20 @@
 
 					<div class="section__item">
 						<ButtonItem
+							name="Проверить строку на наличие конкретных слов в начале"
+							@click="stringStartsWith(longString)"
+						/>
+						<p>Строка: {{ longString }}</p>
+						<p>
+							Результат проверки на наличие слова "добро": {{ resultStringStartsWith }}
+						</p>
+						<p>
+							Результат проверки на наличие слова "Согласно": {{ resultStringStartsWith2 }}
+						</p>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
 							name="Очистить все итоговые строки"
 							theme="secondary"
 							@click="clearStrings()"
@@ -263,7 +277,8 @@ const resultObjectEntries = ref([]);
 // Состояния у строк //
 const resultStringIncludes = ref('');
 const resultStringIncludes2 = ref('');
-const resultStartsWith = ref('');
+const resultStringStartsWith = ref('');
+const resultStringStartsWith2 = ref('');
 const resultEndsWith = ref('');
 const resultStringRepeat = ref('');
 
@@ -531,10 +546,26 @@ const stringIncludes = (string) => {
 	return resultStringIncludes, resultStringIncludes2;
 };
 
+const stringStartsWith = (string) => {
+	resultStringStartsWith.value = false;
+	resultStringStartsWith2.value = false;
+
+	const result1 = string.startsWith('добро');
+	const result2 = string.startsWith('Согласно');
+
+	resultStringStartsWith.value = result1;
+	resultStringStartsWith2.value = result2;
+
+	console.log(resultStringStartsWith);
+	console.log(resultStringStartsWith2);
+
+	return resultStringStartsWith, resultStringStartsWith2;
+};
+
 const clearStrings = () => {
 	resultStringIncludes.value = '';
 	resultStringIncludes2.value = '';
-	resultStartsWith.value = '';
+	resultStringStartsWith.value = '';
 	resultEndsWith.value = '';
 	resultStringRepeat.value = '';
 };

@@ -147,6 +147,16 @@
 
 					<div class="section__item">
 						<ButtonItem
+							name="Устанавливаем прототип другому объекту"
+							@click="objectSetPrototypeOf(russianWeapons, popularWeapons)"
+						/>
+						<p>Исходный объект: {{ russianWeapons }}</p>
+						<p>Целевой объект: {{ popularWeapons }}</p>
+						<p>Итоговый объект: {{ resultObjectSetPrototypeOf }}</p>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
 							name="Очистить все итоговые объекты"
 							theme="secondary"
 							@click="clearObjects()"
@@ -190,7 +200,7 @@ const resultArrayValues = ref([]);
 
 const resultObjectAssign = ref({});
 const resultObjectIs = ref('');
-const resultObjectIsEqual = ref('');
+const resultObjectSetPrototypeOf = ref('');
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -384,8 +394,22 @@ const objectIs = (targetObject, sourceObject) => {
 	}
 };
 
+const objectSetPrototypeOf = (targetObject, sourceObject) => {
+	resultObjectSetPrototypeOf.value = {};
+
+	const result = Object.setPrototypeOf(targetObject, sourceObject);
+
+	resultObjectSetPrototypeOf.value = result;
+
+	console.log(resultObjectSetPrototypeOf);
+
+	return resultObjectSetPrototypeOf;
+};
+
 const clearObjects = () => {
 	resultObjectAssign.value = {};
+	resultObjectIs.value = '';
+	resultObjectSetPrototypeOf.value = '';
 };
 </script>
 

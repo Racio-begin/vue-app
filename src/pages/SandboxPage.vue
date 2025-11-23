@@ -113,8 +113,6 @@
 						</div>
 					</div>
 
-
-
 					<div class="section__item">
 						<ButtonItem
 							name="Очистить все итоговые массивы"
@@ -123,8 +121,29 @@
 						/>
 					</div>
 				</section>
-			</div>
 
+				<section class="sandbox__section section">
+					<h2>Методы объектов</h2>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Копируем свойства исходного объекта в целевой"
+							@click="objectAssign(russianWeapons, popularWeapons)"
+						/>
+						<p>Исходный объект: {{ russianWeapons }}</p>
+						<p>Целевой объект: {{ popularWeapons }}</p>
+						<p>Итоговый объект: {{ resultObjectAssign }}</p>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
+							name="Очистить все итоговые объекты"
+							theme="secondary"
+							@click="clearObjects()"
+						/>
+					</div>
+				</section>
+			</div>
 		</div>
 	</div>
 </template>
@@ -137,6 +156,7 @@ import Library from "@/features/library/components/Library";
 // Константы //
 import { numbersArray, stringsArray } from '@/constants/arrays';
 import { testString } from '@/constants/strings';
+import { russianWeapons, popularWeapons } from '@/constants/objects';
 
 const book = new Book({
 	title: "Скотный двор",
@@ -157,6 +177,8 @@ const resultArrayCopyWithin = ref([]);
 const resultArrayEntries = ref([]);
 const resultArrayKeys = ref([]);
 const resultArrayValues = ref([]);
+
+const resultObjectAssign = ref({});
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -317,6 +339,27 @@ const clearArrays = () => {
 	resultArrayFind.value = [];
 	resultArrayFindIndex.value = [];
 	resultArrayToFill.value = [];
+	resultArrayCopyWithin.value = [];
+	resultArrayEntries.value = [];
+	resultArrayKeys.value = [];
+	resultArrayValues.value = [];
+};
+
+// Методы для работы с объектами //
+const objectAssign = (target, source) => {
+	resultObjectAssign.value = {};
+
+	const result = Object.assign(target, source);
+
+	resultObjectAssign.value = result;
+
+	console.log(resultObjectAssign);
+
+	return resultObjectAssign;
+};
+
+const clearObjects = () => {
+	resultObjectAssign.value = {};
 };
 </script>
 

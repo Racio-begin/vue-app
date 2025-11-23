@@ -171,6 +171,22 @@
 
 					<div class="section__item">
 						<ButtonItem
+							name="Проработать объект через итераторы"
+							@click="objectIterators(russianWeapons)"
+						/>
+						<div class="section__row">
+							<p>Исходный объект: {{ russianWeapons }}</p>
+							<p>Итоговые значения после метода values:
+								{{ resultObjectValues }}
+							</p>
+							<p>Итоговые значения после метода entries:
+								{{ resultObjectEntries }}
+							</p>
+						</div>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
 							name="Очистить все итоговые объекты"
 							theme="secondary"
 							@click="clearObjects()"
@@ -203,6 +219,7 @@ const book = new Book({
 const boonInfo = ref('');
 const library = reactive(new Library());
 
+// Состояния у массивов //
 const resultArrayFrom = ref([]);
 const resultArrayOf = ref([]);
 const resultArrayFind = ref([]);
@@ -213,10 +230,13 @@ const resultArrayEntries = ref([]);
 const resultArrayKeys = ref([]);
 const resultArrayValues = ref([]);
 
+// Состояния у объектов //
 const resultObjectAssign = ref({});
 const resultObjectIs = ref('');
 const resultObjectSetPrototypeOf = ref('');
 const resultObjectGetOwnPropertySymbols = ref([]);
+const resultObjectValues = ref([]);
+const resultObjectEntries = ref([]);
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -440,10 +460,29 @@ const objectGetOwnPropertySymbols = (object) => {
 	return resultObjectGetOwnPropertySymbols.value;
 };
 
+const objectIterators = (object) => {
+	resultObjectValues.value = [];
+	resultObjectEntries.value = [];
+
+	const resultsValues = Object.values(object);
+	const resultsEntries = Object.entries(object);
+
+	resultObjectValues.value = resultsValues;
+	resultObjectEntries.value = resultsEntries;
+
+	console.log(resultObjectValues);
+	console.log(resultObjectEntries);
+
+	return resultObjectValues, resultObjectEntries;
+};
+
 const clearObjects = () => {
 	resultObjectAssign.value = {};
 	resultObjectIs.value = '';
 	resultObjectSetPrototypeOf.value = '';
+	resultObjectGetOwnPropertySymbols.value = [];
+	resultObjectValues.value = [];
+	resultObjectEntries.value = [];
 };
 </script>
 

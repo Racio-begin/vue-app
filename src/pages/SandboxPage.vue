@@ -157,6 +157,15 @@
 
 					<div class="section__item">
 						<ButtonItem
+							name="Получаем все символы в объекте"
+							@click="objectGetOwnPropertySymbols(russianWeapons)"
+						/>
+						<p>Исходный объект: {{ russianWeapons }}</p>
+						<p>Итоговый объект: {{ resultObjectGetOwnPropertySymbols }}</p>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
 							name="Очистить все итоговые объекты"
 							theme="secondary"
 							@click="clearObjects()"
@@ -177,6 +186,7 @@ import Library from "@/features/library/components/Library";
 import { numbersArray, stringsArray } from '@/constants/arrays';
 import { testString } from '@/constants/strings';
 import { russianWeapons, popularWeapons } from '@/constants/objects';
+import { alpha, omega } from '@/constants/symbols';
 
 const book = new Book({
 	title: "Скотный двор",
@@ -201,6 +211,7 @@ const resultArrayValues = ref([]);
 const resultObjectAssign = ref({});
 const resultObjectIs = ref('');
 const resultObjectSetPrototypeOf = ref('');
+const resultObjectGetOwnPropertySymbols = ref([]);
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -404,6 +415,24 @@ const objectSetPrototypeOf = (targetObject, sourceObject) => {
 	console.log(resultObjectSetPrototypeOf);
 
 	return resultObjectSetPrototypeOf;
+};
+
+const objectGetOwnPropertySymbols = (object) => {
+	resultObjectGetOwnPropertySymbols.value = [];
+
+	const symbolAlpha = alpha;
+	const symbolOmega = omega;
+
+	resultObjectGetOwnPropertySymbols.value[symbolAlpha] = 'symbolAlpha';
+	resultObjectGetOwnPropertySymbols.value[symbolOmega] = 'symbolOmega';
+
+	const result = Object.getOwnPropertySymbols(resultObjectGetOwnPropertySymbols.value);
+
+	resultObjectGetOwnPropertySymbols.value = result;
+
+	console.log(resultObjectGetOwnPropertySymbols.value);
+
+	return resultObjectGetOwnPropertySymbols.value;
 };
 
 const clearObjects = () => {

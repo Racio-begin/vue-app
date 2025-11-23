@@ -223,6 +223,20 @@
 
 					<div class="section__item">
 						<ButtonItem
+							name="Проверить строку на наличие конкретных слов в конце"
+							@click="stringEndsWith(longString)"
+						/>
+						<p>Строка: {{ longString }}</p>
+						<p>
+							Результат проверки на наличие слова "США": {{ resultStringEndsWith }}
+						</p>
+						<p>
+							Результат проверки на наличие слова "добро": {{ resultStringEndsWith2 }}
+						</p>
+					</div>
+
+					<div class="section__item">
+						<ButtonItem
 							name="Очистить все итоговые строки"
 							theme="secondary"
 							@click="clearStrings()"
@@ -279,8 +293,11 @@ const resultStringIncludes = ref('');
 const resultStringIncludes2 = ref('');
 const resultStringStartsWith = ref('');
 const resultStringStartsWith2 = ref('');
-const resultEndsWith = ref('');
+const resultStringEndsWith = ref('');
+const resultStringEndsWith2 = ref('');
+
 const resultStringRepeat = ref('');
+const resultStringRepeat2 = ref('');
 
 const showInfoBook = () => {
 	boonInfo.value = book.getInfo();
@@ -562,12 +579,33 @@ const stringStartsWith = (string) => {
 	return resultStringStartsWith, resultStringStartsWith2;
 };
 
+const stringEndsWith = (string) => {
+	resultStringEndsWith.value = false;
+	resultStringEndsWith2.value = false;
+
+	// Убираем возможные знаки препинания в конце для проверки
+	const cleanString = string.replace(/[.!?]$/, '');
+
+	const result1 = cleanString.endsWith('США');
+	const result2 = cleanString.endsWith('добро');
+
+	resultStringEndsWith.value = result1;
+	resultStringEndsWith2.value = result2;
+
+	console.log(resultStringEndsWith);
+	console.log(resultStringEndsWith2);
+
+	return resultStringEndsWith, resultStringEndsWith2;
+};
+
 const clearStrings = () => {
 	resultStringIncludes.value = '';
 	resultStringIncludes2.value = '';
 	resultStringStartsWith.value = '';
-	resultEndsWith.value = '';
+	resultStringEndsWith.value = '';
+	resultStringStartsWith2.value = '';
 	resultStringRepeat.value = '';
+	resultStringRepeat2.value = '';
 };
 </script>
 
